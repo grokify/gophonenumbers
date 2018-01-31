@@ -9,7 +9,10 @@ import (
 	uu "github.com/grokify/gotilla/net/urlutil"
 )
 
-const NumverifyApiUrl = "http://apilayer.net/api/validate"
+const (
+	CountriesEndpoint = "http://apilayer.net/api/countries"
+	ValidateEndpoint  = "http://apilayer.net/api/validate"
+)
 
 var EnvNumverifyAccessKey = "NUMVERIFY_ACCESS_KEY"
 
@@ -19,11 +22,11 @@ type NumverifyClient struct {
 
 // Returns separate objects for API Success and API Error structs because
 // Numverify API will return a 200 OK for errors such as auth errors.
-func (nc *NumverifyClient) Get(params NumverifyParams) (*NumverifyResponseSuccess, *NumverifyResponseError, *http.Response, error) {
+func (nc *NumverifyClient) Validate(params NumverifyParams) (*NumverifyResponseSuccess, *NumverifyResponseError, *http.Response, error) {
 	if len(params.AccessKey) == 0 {
 		params.AccessKey = nc.AccessKey
 	}
-	apiUrl := uu.BuildURLQueryString(NumverifyApiUrl, params)
+	apiUrl := uu.BuildURLQueryString(ValidateEndpoint, params)
 
 	resp, respBody, err := hum.GetResponseAndBytes(apiUrl)
 
@@ -39,6 +42,28 @@ func (nc *NumverifyClient) Get(params NumverifyParams) (*NumverifyResponseSucces
 	err = json.Unmarshal(respBody, &apiErrorInfo)
 
 	return &apiSuccessInfo, &apiErrorInfo, resp, err
+}
+
+// Returns separate objects for API Success and API Error structs because
+// Numverify API will return a 200 OK for errors such as auth errors.
+func (nc *NumverifyClient) Countries() (map[string]Country, *NumverifyResponseError, *http.Response, error) {
+	apiUrl := CountriesEndpoint + "?access_key=" + nc.AccessKey
+	resp, respBody, err := hum.GetResponseAndBytes(apiUrl)
+
+	countries := map[string]Country{}
+
+	if err != nil {
+		return countries, nil, resp, err
+	} else if resp.StatusCode >= 300 {
+		return countries, nil, resp, fmt.Errorf("Numverify API Error: %v", resp.StatusCode)
+	}
+
+	err = json.Unmarshal(respBody, &countries)
+
+	var apiErrorInfo NumverifyResponseError
+	err = json.Unmarshal(respBody, &apiErrorInfo)
+
+	return countries, &apiErrorInfo, resp, err
 }
 
 // NumverifyParams is the request query parameters for the
@@ -74,4 +99,9 @@ type NumverifyError struct {
 	Code int    `json:"code,omitempty"`
 	Type string `json:"type,omitempty"`
 	Info string `json:"info,omitempty"`
+}
+
+type Country struct {
+	CountryName string `json:"country_name,omitempty"`
+	DialingCode string `json:"dialling_code,omitempty"`
 }

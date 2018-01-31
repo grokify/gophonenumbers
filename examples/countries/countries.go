@@ -21,14 +21,10 @@ func main() {
 		AccessKey: os.Getenv(nv.EnvNumverifyAccessKey),
 	}
 
-	p := nv.NumverifyParams{
-		Number: "+16505551212",
-	}
-
 	// Returns separate objects for API Success and API Error
 	// because Numverify API returns a 200 OK on errors like
 	// auth errors.
-	apiSuccessInfo, apiErrorInfo, resp, err := client.Get(p)
+	apiSuccessInfo, apiErrorInfo, resp, err := client.Countries()
 	if err != nil {
 		panic(err)
 	}
