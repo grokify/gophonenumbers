@@ -9,7 +9,7 @@ This is a Go client for the Numverify API:
 
 https://numverify.com/documentation
 
-## Installatoin
+## Installation
 
 ```
 $ go get github.com/grokify/go-numverify
@@ -17,9 +17,10 @@ $ go get github.com/grokify/go-numverify
 
 ## Usage
 
-See example:
+See examples:
 
-[numverify_query.go](examples/numverify/numverify_query.go)
+* [validate.go](examples/validate/validate.go)
+* [countries.go](examples/countries/countries.go)
 
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/go-numverify
  [goreport-link]: https://goreportcard.com/report/github.com/grokify/go-numverify
