@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 
@@ -9,6 +10,7 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// main: Usage: verify -number +16505550100
 func main() {
 	if len(os.Getenv("ENV_PATH")) > 0 {
 		err := godotenv.Load(os.Getenv("ENV_PATH"))
@@ -17,12 +19,16 @@ func main() {
 		}
 	}
 
+	var numToVerify string
+	flag.StringVar(&numToVerify, "number", "+16505550100", "Number to verify")
+	flag.Parse()
+
 	client := nv.NumverifyClient{
 		AccessKey: os.Getenv(nv.EnvNumverifyAccessKey),
 	}
 
 	p := nv.NumverifyParams{
-		Number: "+16505551212",
+		Number: numToVerify,
 	}
 
 	// Returns separate objects for API Success and API Error
