@@ -1,5 +1,5 @@
 language: go
-go_import_path: github.com/grokify/html-strip-tags-go
+go_import_path: github.com/grokify/go-numverify
 go:
   - "1.10.x"
   - "1.9.x"
