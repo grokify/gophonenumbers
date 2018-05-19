@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/grokify/gotilla/config"
 	"github.com/grokify/gotilla/fmt/fmtutil"
@@ -14,10 +15,10 @@ import (
 
 type cliOptions struct {
 	EnvFile   string `short:"e" long:"env" description:"Env filepath"`
+	Token     string `short:"t" long:"token" description:"Access token"`
 	Number    string `short:"n" long:"number" description:"Number to verify"`
 	Verbose   []bool `short:"v" long:"verbose" description:"Verbose"`
 	Countries []bool `short:"c" long:"countries" description:"List Countries"`
-	//Token   string `short:"t" long:"token" description:"Access token"`
 }
 
 func showNumber(client nv.NumverifyClient, number string) {
@@ -66,9 +67,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	client := nv.NumverifyClient{
-		AccessKey: os.Getenv(nv.EnvNumverifyAccessKey),
+	numverifyAccessToken := strings.TrimSpace(opts.Token)
+	if len(numverifyAccessToken) == 0 {
+		numverifyAccessToken = os.Getenv(nv.EnvNumverifyAccessKey)
 	}
+
+	client := nv.NumverifyClient{AccessKey: numverifyAccessToken}
 
 	if len(opts.Number) > 0 {
 		showNumber(client, opts.Number)
