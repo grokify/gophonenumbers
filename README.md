@@ -42,15 +42,11 @@ $ numverify -t=<myToken> -c
 
 ```go
 import(
-	"os"
-
 	nv "github.com/grokify/numverify/numverify"
 )
 
 func main() {
-	client := nv.NumverifyClient{
-		AccessKey: os.Getenv("NUMVERIFY_ACCESS_KEY"),
-	}
+	client := nv.NumverifyClient{AccessKey: "myAccessKey"}
 
 	apiSuccessInfo, apiErrorInfo, resp, err := client.Validate(
 		nv.NumverifyParams{Number: number})
@@ -63,15 +59,11 @@ func main() {
 
 ```go
 import(
-	"os"
-
 	nv "github.com/grokify/numverify/numverify"
 )
 
 func main() {
-	client := nv.NumverifyClient{
-		AccessKey: os.Getenv("NUMVERIFY_ACCESS_KEY"),
-	}
+	client := nv.NumverifyClient{AccessKey: "myAccessKey"}
 
 	countries, apiErrorInfo, resp, err := client.Countries()
 
