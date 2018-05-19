@@ -13,7 +13,7 @@ https://numverify.com/documentation
 ## Installation
 
 ```
-$ go get github.com/grokify/go-numverify
+$ go get github.com/grokify/numverify
 ```
 
 ## Usage
