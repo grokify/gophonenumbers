@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 
 	nv "github.com/grokify/go-numverify"
 	"github.com/grokify/gotilla/fmt/fmtutil"
@@ -20,8 +21,13 @@ func main() {
 	}
 
 	var numToVerify string
-	flag.StringVar(&numToVerify, "number", "+16505550100", "Number to verify")
+	flag.StringVar(&numToVerify, "number", "", "Number to verify")
 	flag.Parse()
+
+	if len(strings.TrimSpace(numToVerify)) == 0 {
+		fmt.Println("Usage: validate.go --number=+16505550200")
+		return
+	}
 
 	client := nv.NumverifyClient{
 		AccessKey: os.Getenv(nv.EnvNumverifyAccessKey),
