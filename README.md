@@ -1,12 +1,12 @@
-Numverify Go SDK Client
-=======================
+Numverify Go Client SDK and CLI app
+===================================
 
 [![Build Status][build-status-svg]][build-status-link]
 [![Go Report Card][goreport-svg]][goreport-link]
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
 
-This is a Go client for the Numverify API:
+This is a Go client and CLI app for the Numverify API:
 
 https://numverify.com/documentation
 
@@ -18,10 +18,54 @@ $ go get github.com/grokify/go-numverify
 
 ## Usage
 
-See examples:
+### CLI App
 
-* [validate.go](examples/validate/validate.go)
-* [countries.go](examples/countries/countries.go)
+```
+$ numverify -e=/path/to/.env -n=+16505550100
+```
+
+### SDK
+
+#### Validate Number
+
+```go
+import(
+	"os"
+
+	nv "github.com/grokify/numverify/numverify"
+)
+
+func main() {
+	client := nv.NumverifyClient{
+		AccessKey: os.Getenv("NUMVERIFY_ACCESS_KEY"),
+	}
+
+	apiSuccessInfo, apiErrorInfo, resp, err := client.Validate(
+		nv.NumverifyParams{Number: number})
+
+	[...]
+}
+```
+
+#### Get Countries
+
+```go
+import(
+	"os"
+
+	nv "github.com/grokify/numverify/numverify"
+)
+
+func main() {
+	client := nv.NumverifyClient{
+		AccessKey: os.Getenv("NUMVERIFY_ACCESS_KEY"),
+	}
+
+	countries, apiErrorInfo, resp, err := client.Countries()
+
+	[...]
+}
+```
 
  [build-status-svg]: https://api.travis-ci.org/grokify/go-numverify.svg?branch=master
  [build-status-link]: https://travis-ci.org/grokify/go-numverify
