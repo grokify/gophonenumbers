@@ -62,7 +62,7 @@ func main() {
 		fmtutil.PrintJSON(opts)
 	}
 
-	err = config.LoadDotEnvSkipFirst(opts.EnvFile, os.Getenv("ENV_PATH"), "./.env")
+	err = config.LoadDotEnvFirst(opts.EnvFile, os.Getenv("ENV_PATH"), "./.env")
 	if err != nil {
 		log.Fatal(err)
 	}
