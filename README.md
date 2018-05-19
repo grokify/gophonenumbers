@@ -20,8 +20,18 @@ $ go get github.com/grokify/numverify
 
 ### CLI App
 
+| Options | Long | Short | Example |
+|---------|------|-------|---------|
+| `.env` File | `--env` | `-e` | `-e=/path/to/.env` |
+| Acces Token | `--token` | `-t` | `-t=<myToken>` |
+| Validate Number | `--number` | `-n` | `-n=<number>` |
+| List Countries | `--countries` | `-c` | `-c` |
+
 ```
 $ numverify -e=/path/to/.env -n=+16505550100
+$ numverify -t=<myToken> -n=+16505550100
+$ numverify -e=/path/to/.env -c
+$ numverify -t=<myToken> -c
 ```
 
 ### SDK
