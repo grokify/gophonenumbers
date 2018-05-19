@@ -27,6 +27,8 @@ $ go get github.com/grokify/numverify
 | Validate Number | `--number` | `-n` | `-n=<number>` |
 | List Countries | `--countries` | `-c` | `-c` |
 
+#### Example Commands
+
 ```
 $ numverify -e=/path/to/.env -n=+16505550100
 $ numverify -t=<myToken> -n=+16505550100
