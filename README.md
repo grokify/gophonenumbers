@@ -42,7 +42,7 @@ $ numverify -t=<myToken> -c
 
 ```go
 import(
-	nv "github.com/grokify/numverify/numverify"
+	nv "github.com/grokify/numverify"
 )
 
 func main() {
@@ -59,7 +59,7 @@ func main() {
 
 ```go
 import(
-	nv "github.com/grokify/numverify/numverify"
+	nv "github.com/grokify/numverify"
 )
 
 func main() {
@@ -76,6 +76,6 @@ func main() {
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/numverify
  [goreport-link]: https://goreportcard.com/report/github.com/grokify/numverify
  [docs-godoc-svg]: https://img.shields.io/badge/docs-godoc-blue.svg
- [docs-godoc-link]: https://godoc.org/github.com/grokify/numverify/numverify
+ [docs-godoc-link]: https://godoc.org/github.com/grokify/numverify
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
  [license-link]: https://github.com/grokify/numverify/blob/master/LICENSE
