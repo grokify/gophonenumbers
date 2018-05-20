@@ -12,9 +12,11 @@ https://numverify.com/documentation
 
 ## Installation
 
-```
-$ go get github.com/grokify/numverify
-```
+| Install | Command |
+|---------|---------|
+| SDK only | `$ go get github.com/grokify/numverify` |
+| CLI only | `$ go get github.com/grokify/numverify/cmd/numverify` |
+| SDK and CLI | `$ go get github.com/grokify/numverify/...` |
 
 ## Usage
 
