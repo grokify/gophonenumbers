@@ -9,7 +9,7 @@ import (
 
 	"github.com/grokify/gotilla/config"
 	"github.com/grokify/gotilla/fmt/fmtutil"
-	nv "github.com/grokify/numverify/numverify"
+	nv "github.com/grokify/numverify"
 	"github.com/jessevdk/go-flags"
 )
 
