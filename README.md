@@ -14,9 +14,9 @@ https://numverify.com/documentation
 
 | Install | Command |
 |---------|---------|
-| SDK only | `$ go get github.com/grokify/numverify` |
-| CLI only | `$ go get github.com/grokify/numverify/cmd/numverify` |
-| SDK and CLI | `$ go get github.com/grokify/numverify/...` |
+| SDK only | `$ go get github.com/grokify/numlookup` |
+| CLI only | `$ go get github.com/grokify/numlookup/apps/numverify` |
+| SDK and CLI | `$ go get github.com/grokify/numlookup/...` |
 
 ## Usage
 
