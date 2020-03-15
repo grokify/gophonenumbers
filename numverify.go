@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
+	"time"
 
 	hum "github.com/grokify/gotilla/net/httputilmore"
 	uu "github.com/grokify/gotilla/net/urlutil"
@@ -16,39 +18,57 @@ const (
 
 var EnvNumverifyAccessKey = "NUMVERIFY_ACCESS_KEY"
 
-type NumverifyClient struct {
+type Client struct {
 	AccessKey string
 }
 
-// Returns separate objects for API Success and API Error structs because
-// Numverify API will return a 200 OK for errors such as auth errors.
-func (nc *NumverifyClient) Validate(params NumverifyParams) (*NumverifyResponseSuccess, *NumverifyResponseError, *http.Response, error) {
-	if len(params.AccessKey) == 0 {
-		params.AccessKey = nc.AccessKey
-	}
-	apiUrl := uu.BuildURLQueryString(ValidateEndpoint, params)
-
-	resp, respBody, err := hum.GetResponseAndBytes(apiUrl)
-
-	if err != nil {
-		return nil, nil, resp, err
-	} else if resp.StatusCode >= 300 {
-		return nil, nil, resp, fmt.Errorf("Numverify API Error: %v", resp.StatusCode)
-	}
-	var apiSuccessInfo NumverifyResponseSuccess
-	err = json.Unmarshal(respBody, &apiSuccessInfo)
-
-	var apiErrorInfo NumverifyResponseError
-	err = json.Unmarshal(respBody, &apiErrorInfo)
-
-	return &apiSuccessInfo, &apiErrorInfo, resp, err
+func NewClient(accessKey string) Client {
+	return Client{AccessKey: strings.TrimSpace(accessKey)}
 }
 
 // Returns separate objects for API Success and API Error structs because
 // Numverify API will return a 200 OK for errors such as auth errors.
-func (nc *NumverifyClient) Countries() (map[string]Country, *NumverifyResponseError, *http.Response, error) {
-	apiUrl := CountriesEndpoint + "?access_key=" + nc.AccessKey
-	resp, respBody, err := hum.GetResponseAndBytes(apiUrl)
+func (nc *Client) Validate(params Params) (*Response, *http.Response, error) {
+	params.AccessKey = strings.TrimSpace(params.AccessKey)
+	if len(params.AccessKey) == 0 {
+		params.AccessKey = nc.AccessKey
+	}
+	apiURL := uu.BuildURLQueryString(ValidateEndpoint, params)
+
+	resp, respBody, err := hum.GetResponseAndBytes(apiURL)
+
+	nvResp := Response{
+		StatusCode: resp.StatusCode,
+		ClientErr:  err,
+		Body:       string(respBody),
+		Time:       time.Now()}
+	if err != nil {
+		return &nvResp, resp, err
+	} else if resp.StatusCode >= 300 {
+		return &nvResp, resp, fmt.Errorf("Numverify API Error: %v", resp.StatusCode)
+	}
+
+	// Try both success and response. Will
+	// error for one.
+	var apiSuccessInfo ResponseSuccess
+	var apiErrorInfo ResponseError
+
+	err = json.Unmarshal(respBody, &apiSuccessInfo)
+	if err != nil {
+		err = json.Unmarshal(respBody, &apiErrorInfo)
+	}
+	nvResp.Success = &apiSuccessInfo
+	nvResp.Failure = &apiErrorInfo
+
+	return &nvResp, resp, err
+	//return &apiSuccessInfo, &apiErrorInfo, resp, err
+}
+
+// Countries returns separate objects for API Success and API Error structs because
+// Numverify API will return a 200 OK for errors such as auth errors.
+func (nc *Client) Countries() (map[string]Country, *ResponseError, *http.Response, error) {
+	apiURL := CountriesEndpoint + "?access_key=" + nc.AccessKey
+	resp, respBody, err := hum.GetResponseAndBytes(apiURL)
 
 	countries := map[string]Country{}
 
@@ -60,16 +80,16 @@ func (nc *NumverifyClient) Countries() (map[string]Country, *NumverifyResponseEr
 
 	err = json.Unmarshal(respBody, &countries)
 
-	var apiErrorInfo NumverifyResponseError
+	var apiErrorInfo ResponseError
 	err = json.Unmarshal(respBody, &apiErrorInfo)
 
 	return countries, &apiErrorInfo, resp, err
 }
 
-// NumverifyParams is the request query parameters for the
+// Params is the request query parameters for the
 // API. AccessKey is added by the client and is not needed
 // per-request.
-type NumverifyParams struct {
+type Params struct {
 	AccessKey   string `url:"access_key" json:"access_key,omitempty"`
 	Number      string `url:"number" json:"number,omitempty"`
 	CountryCode string `url:"country_code" json:"country_code,omitempty"`
@@ -77,7 +97,7 @@ type NumverifyParams struct {
 	Callback    string `url:"callback" json:"callback,omitempty"`
 }
 
-type NumverifyResponseSuccess struct {
+type ResponseSuccess struct {
 	Valid               bool   `json:"valid,omitempty"`
 	Number              string `json:"number,omitempty"`
 	LocalFormat         string `json:"local_format,omitempty"`
@@ -90,12 +110,12 @@ type NumverifyResponseSuccess struct {
 	LineType            string `json:"line_type,omitempty"`
 }
 
-type NumverifyResponseError struct {
-	Success bool           `json:"success"`
-	Error   NumverifyError `json:"error,omitempty"`
+type ResponseError struct {
+	Success bool  `json:"success"`
+	Error   Error `json:"error,omitempty"`
 }
 
-type NumverifyError struct {
+type Error struct {
 	Code int    `json:"code,omitempty"`
 	Type string `json:"type,omitempty"`
 	Info string `json:"info,omitempty"`
@@ -104,4 +124,13 @@ type NumverifyError struct {
 type Country struct {
 	CountryName string `json:"country_name,omitempty"`
 	DialingCode string `json:"dialling_code,omitempty"`
+}
+
+type Response struct {
+	StatusCode int
+	Body       string
+	ClientErr  error
+	Success    *ResponseSuccess
+	Failure    *ResponseError
+	Time       time.Time
 }
