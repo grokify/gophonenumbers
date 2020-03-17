@@ -1,4 +1,4 @@
-package numberinfo
+package gophonenumbers
 
 import (
 	"errors"

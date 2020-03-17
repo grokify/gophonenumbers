@@ -6,10 +6,10 @@ import (
 	"os"
 	"strings"
 
+	"github.com/grokify/gophonenumbers/twilio"
 	"github.com/grokify/gotilla/config"
 	"github.com/grokify/gotilla/fmt/fmtutil"
 	"github.com/grokify/gotilla/type/stringsutil"
-	"github.com/grokify/numberinfo/twilio"
 	"github.com/jessevdk/go-flags"
 )
 

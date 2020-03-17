@@ -9,10 +9,10 @@ import (
 	"time"
 
 	"github.com/grokify/gocharts/data/frequency"
+	"github.com/grokify/gophonenumbers/common"
 	"github.com/grokify/gotilla/fmt/fmtutil"
 	"github.com/grokify/gotilla/io/ioutilmore"
 	"github.com/grokify/gotilla/type/stringsutil"
-	"github.com/grokify/numberinfo/common"
 	log "github.com/sirupsen/logrus"
 )
 

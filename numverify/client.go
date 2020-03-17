@@ -7,9 +7,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/grokify/gophonenumbers"
 	hum "github.com/grokify/gotilla/net/httputilmore"
 	uu "github.com/grokify/gotilla/net/urlutil"
-	"github.com/grokify/numberinfo"
 )
 
 const (
@@ -111,10 +111,10 @@ type ResponseSuccess struct {
 	LineType            string `json:"line_type,omitempty"`
 }
 
-func (rs *ResponseSuccess) NumberInfoLookup() numberinfo.NumberInfoLookup {
-	cni := numberinfo.NumberInfoLookup{
+func (rs *ResponseSuccess) NumberInfoLookup() gophonenumbers.NumberInfoLookup {
+	cni := gophonenumbers.NumberInfoLookup{
 		NumberE164: rs.InternationalFormat,
-		Carrier: numberinfo.Carrier{
+		Carrier: gophonenumbers.Carrier{
 			Name:     rs.Carrier,
 			LineType: rs.LineType},
 	}

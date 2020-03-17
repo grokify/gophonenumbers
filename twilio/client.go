@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/grokify/gophonenumbers"
 	"github.com/grokify/gotilla/net/httputilmore"
-	"github.com/grokify/numberinfo"
 	"github.com/grokify/oauth2more"
 )
 
@@ -111,19 +111,19 @@ type Carrier struct {
 	ErrorCode         string `json:"error_code,omitempty"`
 }
 
-func (c *Carrier) ToCommon() numberinfo.Carrier {
-	return numberinfo.Carrier{
+func (c *Carrier) ToCommon() gophonenumbers.Carrier {
+	return gophonenumbers.Carrier{
 		MobileCountryCode: c.MobileCountryCode,
 		MobileNetworkCode: c.MobileNetworkCode,
 		Name:              c.Name,
 		LineType:          c.Type}
 }
 
-func (tni *NumberInfo) ToLookup() numberinfo.NumberInfoLookup {
-	lookup := numberinfo.NumberInfoLookup{
+func (tni *NumberInfo) ToLookup() gophonenumbers.NumberInfoLookup {
+	lookup := gophonenumbers.NumberInfoLookup{
 		NumberE164:   tni.PhoneNumber,
 		Carrier:      tni.Carrier.ToCommon(),
-		LookupSource: numberinfo.Twilio,
+		LookupSource: gophonenumbers.Twilio,
 		LookupTime:   tni.ApiResponseInfo.Time,
 		ApiInfo:      tni.ApiResponseInfo,
 		/*NumberE164   string

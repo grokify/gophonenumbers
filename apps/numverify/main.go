@@ -7,9 +7,9 @@ import (
 	"os"
 	"strings"
 
+	nv "github.com/grokify/gophonenumbers/numverify"
 	"github.com/grokify/gotilla/config"
 	"github.com/grokify/gotilla/fmt/fmtutil"
-	nv "github.com/grokify/numberinfo/numverify"
 	"github.com/jessevdk/go-flags"
 )
 
