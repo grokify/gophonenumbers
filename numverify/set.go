@@ -12,7 +12,7 @@ import (
 	"github.com/grokify/gotilla/fmt/fmtutil"
 	"github.com/grokify/gotilla/io/ioutilmore"
 	"github.com/grokify/gotilla/type/stringsutil"
-	"github.com/grokify/numlookup/common"
+	"github.com/grokify/numberinfo/common"
 	log "github.com/sirupsen/logrus"
 )
 

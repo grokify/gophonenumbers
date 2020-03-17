@@ -1,6 +1,14 @@
-package numlookup
+package numberinfo
 
-import "github.com/grokify/gotilla/net/httputilmore"
+import (
+	"errors"
+	"fmt"
+	"sort"
+	"strings"
+	"time"
+
+	"github.com/grokify/gotilla/net/httputilmore"
+)
 
 const (
 	CarrierATT     = "att.com"
@@ -9,12 +17,104 @@ const (
 	CarrierVerizon = "verizon.com"
 )
 
+type Source string
+
+const (
+	Ekata     Source = "ekata"
+	Numverify Source = "numverify"
+	Twilio    Source = "twilio"
+)
+
 type NumberInfo struct {
-	Number            string
-	Carrier           string
-	LineType          string
-	CallerName        string
-	MobileCountryCode int
-	MobileNetworkCode int
-	ApiHistory        map[string]httputilmore.ResponseInfo
+	NumberE164       string
+	Components       Components
+	Carrier          Carrier
+	Lookups          []NumberInfoLookup
+	CarrierNamesEach []string
+	LineTypesEach    []string
+}
+
+func NewNumberInfo() NumberInfo {
+	return NumberInfo{
+		Lookups:          []NumberInfoLookup{},
+		CarrierNamesEach: []string{},
+		LineTypesEach:    []string{}}
+}
+
+func (ni *NumberInfo) Inflate() error {
+	ni.NumberE164 = strings.TrimSpace(ni.NumberE164)
+	if len(ni.Lookups) > 0 {
+		lookups := ni.Lookups
+		sort.Slice(
+			lookups,
+			func(i, j int) bool {
+				// Ascending
+				// return lookups[i].LookupTime.Before(lookups[j].LookupTime)
+				// Descending
+				return lookups[i].LookupTime.After(lookups[j].LookupTime)
+			},
+		)
+		ni.Lookups = lookups
+	}
+	carrierNames := []string{}
+	carrierNamesSources := map[string]int{}
+	lineTypes := []string{}
+	lineTypesSources := map[string]int{}
+	for _, lookup := range ni.Lookups {
+		lookup.NumberE164 = strings.TrimSpace(lookup.NumberE164)
+		lookup.Carrier.Name = strings.TrimSpace(lookup.Carrier.Name)
+		lookup.Carrier.LineType = strings.TrimSpace(lookup.Carrier.LineType)
+		if len(lookup.NumberE164) == 0 {
+			return errors.New("E_LOOKUP_NO_E164")
+		}
+		// Set Top Level E164 number.s
+		if len(ni.NumberE164) == 0 {
+			ni.NumberE164 = lookup.NumberE164
+		}
+		if ni.NumberE164 != lookup.NumberE164 {
+			return fmt.Errorf("E_LOOKUP_E164_MISMATCH TOP[%v] LOOKUP[%v]",
+				ni.NumberE164, lookup.NumberE164)
+		}
+		// Set Top Level Carrier info.
+		ni.Carrier.Name = strings.TrimSpace(ni.Carrier.Name)
+		ni.Carrier.LineType = strings.TrimSpace(ni.Carrier.LineType)
+		if len(ni.Carrier.Name) == 0 {
+			ni.Carrier.Name = lookup.Carrier.Name
+		}
+		if len(ni.Carrier.LineType) == 0 {
+			ni.Carrier.LineType = lookup.Carrier.LineType
+		}
+		source := strings.TrimSpace(string(lookup.LookupSource))
+		if _, ok := carrierNamesSources[source]; !ok {
+			carrierNames = append(carrierNames,
+				fmt.Sprintf("%s(%s)", ni.Carrier.Name, source))
+			carrierNamesSources[source] = 1
+		}
+		if _, ok := lineTypesSources[source]; !ok {
+			lineTypes = append(lineTypes,
+				fmt.Sprintf("%s(%s)", ni.Carrier.LineType, source))
+			lineTypesSources[source] = 1
+		}
+	}
+	ni.CarrierNamesEach = carrierNames
+	ni.LineTypesEach = lineTypes
+	ni.Components = ParseE164(ni.NumberE164)
+	return nil
+}
+
+type NumberInfoLookup struct {
+	NumberE164   string
+	Components   Components
+	Carrier      Carrier
+	LookupSource Source
+	LookupTime   time.Time
+	ApiInfo      httputilmore.ResponseInfo
+}
+
+type Carrier struct {
+	MobileCountryCode string `json:"mobileCountryCode,omitempty"`
+	MobileNetworkCode string `json:"mobileNetworkCode,omitempty"`
+	Name              string `json:"name,omitempty"`
+	LineType          string `json:"lineType,omitempty"`
+	ErrorCode         string `json:"errorCode,omitempty"`
 }
