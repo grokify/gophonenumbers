@@ -2,9 +2,11 @@ package gophonenumbers
 
 import (
 	"errors"
+	"fmt"
 	"strings"
 
 	"github.com/grokify/gocharts/data/frequency"
+	"github.com/grokify/gotilla/encoding/jsonutil"
 )
 
 type NumbersSet struct {
@@ -13,6 +15,19 @@ type NumbersSet struct {
 
 func NewNumbersSet() NumbersSet {
 	return NumbersSet{NumbersMap: map[string]NumberInfo{}}
+}
+
+func (set *NumbersSet) AddNumber(num NumberInfo) error {
+	num.NumberE164 = strings.TrimSpace(num.NumberE164)
+	if len(num.NumberE164) == 0 {
+		return fmt.Errorf("E_NO_PHONE_NUMBER NumbersSet.AddNumber [%v]",
+			jsonutil.MustMarshal(num, true))
+	}
+	if set.NumbersMap == nil {
+		set.NumbersMap = map[string]NumberInfo{}
+	}
+	set.NumbersMap[num.NumberE164] = num
+	return nil
 }
 
 func (set *NumbersSet) AddLookup(lookup NumberInfoLookup) error {
@@ -46,14 +61,22 @@ func (set *NumbersSet) Inflate() {
 	}
 }
 
+func (set *NumbersSet) AreaCodes() frequency.FrequencyStats {
+	return NumbersSetAreaCodesNANP(set)
+}
+
 func NumbersSetAreaCodesNANP(numSet *NumbersSet) frequency.FrequencyStats {
 	numSet.Inflate()
 	fs := frequency.NewFrequencyStats("AreaCodes")
-	for _, ni := range numSet.NumbersMap {
-		if ni.Components.NANPAreaCode > 0 {
-			fs.AddInt(ni.Components.NANPAreaCode)
+	for _, num := range numSet.NumbersMap {
+		if num.Components.NANPAreaCode == 0 {
+			num.Inflate()
+		}
+		if num.Components.NANPAreaCode > 0 {
+			fs.AddInt(int(num.Components.NANPAreaCode))
 		}
 	}
+	fs.Inflate()
 	return fs
 }
 
