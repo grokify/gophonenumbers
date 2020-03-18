@@ -102,6 +102,10 @@ func (ni *NumberInfo) Inflate() error {
 	return nil
 }
 
+func (ni *NumberInfo) InflateComponents() {
+	ni.Components = ParseE164(ni.NumberE164)
+}
+
 type NumberInfoLookup struct {
 	NumberE164   string
 	Components   Components
