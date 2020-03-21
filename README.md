@@ -6,7 +6,7 @@ Numverify Go Client SDK and CLI app
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
 
-This is a Go client and CLI app for the Numverify API:
+This library provides phone number infomration functionality including ability toaccess number look up APIs. It includes a Go client and CLI app for the Numverify API, and Twilio API.
 
 https://numverify.com/documentation
 
@@ -14,9 +14,9 @@ https://numverify.com/documentation
 
 | Install | Command |
 |---------|---------|
-| SDK only | `$ go get github.com/grokify/numlookup` |
-| CLI only | `$ go get github.com/grokify/numlookup/apps/numverify` |
-| SDK and CLI | `$ go get github.com/grokify/numlookup/...` |
+| SDK only | `$ go get github.com/grokify/gophoneenumbers` |
+| CLI only | `$ go get github.com/grokify/gophoneenumbers/apps/numverify` |
+| SDK and CLI | `$ go get github.com/grokify/gophoneenumbers/...` |
 
 ## Usage
 
@@ -44,7 +44,7 @@ $ numverify -t=<myToken> -c
 
 ```go
 import(
-	nv "github.com/grokify/numverify"
+	nv "github.com/grokify/gophonenumbers/numverify"
 )
 
 func main() {
@@ -61,7 +61,7 @@ func main() {
 
 ```go
 import(
-	nv "github.com/grokify/numverify"
+	nv "github.com/grokify/gophonenumbers/numverify"
 )
 
 func main() {
