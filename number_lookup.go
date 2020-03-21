@@ -3,6 +3,7 @@ package gophonenumbers
 import (
 	"errors"
 	"fmt"
+	"sort"
 	"time"
 
 	"github.com/grokify/gophonenumbers/numverify"
@@ -72,4 +73,24 @@ func TwilioCarrierToCommon(c twilio.Carrier) Carrier {
 		MobileNetworkCode: c.MobileNetworkCode,
 		Name:              c.Name,
 		LineType:          c.Type}
+}
+
+func SortLookupsDesc(lookups []NumberLookup) []NumberLookup {
+	sort.SliceStable(lookups, func(i, j int) bool {
+		return sortLookupCompareString(lookups[i]) >
+			sortLookupCompareString(lookups[j])
+	})
+	return lookups
+}
+
+func sortLookupCompareString(lookup NumberLookup) string {
+	ranks := map[Source]int{
+		Numverify: 1,
+		Twilio:    2,
+		Ekata:     3}
+	rank := 0
+	if try, ok := ranks[lookup.LookupSource]; ok {
+		rank = try
+	}
+	return fmt.Sprintf("%d.%s", rank, lookup.LookupTime.Format(time.RFC3339))
 }

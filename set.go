@@ -46,14 +46,14 @@ func (set *NumbersSet) AddLookup(lookup NumberLookup) error {
 }
 
 func (set *NumbersSet) Inflate() {
-	for e164, ni := range set.NumbersMap {
+	for e164, num := range set.NumbersMap {
 		e164 = strings.TrimSpace(e164)
-		ni.NumberE164 = strings.TrimSpace(ni.NumberE164)
-		if len(ni.NumberE164) == 0 {
-			ni.NumberE164 = e164
+		if e164 != num.NumberE164 {
+			panic("E_MISMATCH")
 		}
-		if ni.Components.CountryCode == 0 {
-			ni.Components = ParseE164(ni.NumberE164)
+		num.Inflate()
+		if num.Components.CountryCode == 0 {
+			num.Components = ParseE164(num.NumberE164)
 		}
 	}
 }

@@ -32,17 +32,24 @@ func NewNumberInfo() NumberInfo {
 
 func (ni *NumberInfo) Inflate() error {
 	ni.NumberE164 = strings.TrimSpace(ni.NumberE164)
+
 	if len(ni.Lookups) > 0 {
 		lookups := ni.Lookups
-		sort.Slice(
-			lookups,
-			func(i, j int) bool {
-				// Ascending
-				// return lookups[i].LookupTime.Before(lookups[j].LookupTime)
-				// Descending
-				return lookups[i].LookupTime.After(lookups[j].LookupTime)
-			},
-		)
+		if 1 == 0 {
+			sort.Slice(
+				lookups,
+				func(i, j int) bool {
+					// Ascending
+					// return lookups[i].LookupTime.Before(lookups[j].LookupTime)
+					// Descending
+					return lookups[i].LookupTime.After(lookups[j].LookupTime)
+				},
+			)
+		}
+		sort.SliceStable(lookups, func(i, j int) bool {
+			return sortLookupCompareString(lookups[i]) >
+				sortLookupCompareString(lookups[j])
+		})
 		ni.Lookups = lookups
 	}
 	carrierNames := []string{}
@@ -59,8 +66,8 @@ func (ni *NumberInfo) Inflate() error {
 		// Set Top Level E164 number.s
 		if len(ni.NumberE164) == 0 {
 			ni.NumberE164 = lookup.NumberE164
-		}
-		if ni.NumberE164 != lookup.NumberE164 {
+		} else if ni.NumberE164 != lookup.NumberE164 {
+			// E.164 should be the same for all lookups.
 			return fmt.Errorf("E_LOOKUP_E164_MISMATCH TOP[%v] LOOKUP[%v]",
 				ni.NumberE164, lookup.NumberE164)
 		}
