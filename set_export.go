@@ -8,7 +8,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func SetToTable(numsSet *NumbersSet) table.TableData {
+func NumbersSetToTable(numsSet *NumbersSet) table.TableData {
 	tbl := table.NewTableData()
 	tbl.Columns = []string{
 		"number", "lineType", "carrier", "lineTypes", "carriers", "raw"}
