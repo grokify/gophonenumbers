@@ -73,11 +73,11 @@ func main() {
 }
 ```
 
- [build-status-svg]: https://api.travis-ci.org/grokify/numlookup.svg?branch=master
- [build-status-link]: https://travis-ci.org/grokify/numlookup
- [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/numlookup
- [goreport-link]: https://goreportcard.com/report/github.com/grokify/numlookup
+ [build-status-svg]: https://api.travis-ci.org/grokify/gophonenumbers.svg?branch=master
+ [build-status-link]: https://travis-ci.org/grokify/gophonenumbers
+ [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/gophonenumbers
+ [goreport-link]: https://goreportcard.com/report/github.com/grokify/gophonenumbers
  [docs-godoc-svg]: https://img.shields.io/badge/docs-godoc-blue.svg
- [docs-godoc-link]: https://godoc.org/github.com/grokify/numlookup
+ [docs-godoc-link]: https://godoc.org/github.com/grokify/gophonenumbers
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
- [license-link]: https://github.com/grokify/numlookup/blob/master/LICENSE
+ [license-link]: https://github.com/grokify/gophonenumbers/blob/master/LICENSE
