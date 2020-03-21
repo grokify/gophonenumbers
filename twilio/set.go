@@ -3,14 +3,15 @@ package twilio
 import (
 	"encoding/json"
 	"io/ioutil"
+	"path/filepath"
 	"regexp"
 	"strconv"
 	"strings"
 	"time"
 
 	"github.com/grokify/gophonenumbers/common"
-	"github.com/grokify/gotilla/fmt/fmtutil"
 	"github.com/grokify/gotilla/io/ioutilmore"
+	"github.com/grokify/gotilla/time/timeutil"
 	"github.com/grokify/gotilla/type/stringsutil"
 	log "github.com/sirupsen/logrus"
 )
@@ -130,16 +131,23 @@ func NewMultiResultsFiles(dir string, rxPattern string) (MultiResults, error) {
 	if err != nil {
 		return all, err
 	}
-	files, err := ioutilmore.DirEntriesPathsReNotEmpty(dir, rx)
-	fmtutil.PrintJSON(files)
+	files, err := ioutilmore.DirEntriesReNotEmpty(dir, rx)
 	if err != nil {
 		return all, err
 	}
-	for _, file := range files {
+	for _, fi := range files {
 		mResults := NewMultiResults()
-		err := ioutilmore.ReadFileJSON(file, &mResults)
+		err := ioutilmore.ReadFileJSON(
+			filepath.Join(dir, fi.Name()), &mResults)
 		if err != nil {
 			return all, err
+		}
+		fileModTime := fi.ModTime()
+		for key, ni := range mResults.Responses {
+			if timeutil.TimeIsZeroAny(ni.ApiResponseInfo.Time) {
+				ni.ApiResponseInfo.Time = fileModTime
+				mResults.Responses[key] = ni
+			}
 		}
 		all.AddResponses(mResults.Responses)
 	}

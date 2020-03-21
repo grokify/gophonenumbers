@@ -5,9 +5,6 @@ import (
 	"fmt"
 	"sort"
 	"strings"
-	"time"
-
-	"github.com/grokify/gotilla/net/httputilmore"
 )
 
 const (
@@ -17,26 +14,18 @@ const (
 	CarrierVerizon = "verizon.com"
 )
 
-type Source string
-
-const (
-	Ekata     Source = "ekata"
-	Numverify Source = "numverify"
-	Twilio    Source = "twilio"
-)
-
 type NumberInfo struct {
 	NumberE164       string
 	Components       Components
 	Carrier          Carrier
-	Lookups          []NumberInfoLookup
+	Lookups          []NumberLookup
 	CarrierNamesEach []string
 	LineTypesEach    []string
 }
 
 func NewNumberInfo() NumberInfo {
 	return NumberInfo{
-		Lookups:          []NumberInfoLookup{},
+		Lookups:          []NumberLookup{},
 		CarrierNamesEach: []string{},
 		LineTypesEach:    []string{}}
 }
@@ -104,21 +93,4 @@ func (ni *NumberInfo) Inflate() error {
 
 func (ni *NumberInfo) InflateComponents() {
 	ni.Components = ParseE164(ni.NumberE164)
-}
-
-type NumberInfoLookup struct {
-	NumberE164   string
-	Components   Components
-	Carrier      Carrier
-	LookupSource Source
-	LookupTime   time.Time
-	ApiInfo      httputilmore.ResponseInfo
-}
-
-type Carrier struct {
-	MobileCountryCode string `json:"mobileCountryCode,omitempty"`
-	MobileNetworkCode string `json:"mobileNetworkCode,omitempty"`
-	Name              string `json:"name,omitempty"`
-	LineType          string `json:"lineType,omitempty"`
-	ErrorCode         string `json:"errorCode,omitempty"`
 }

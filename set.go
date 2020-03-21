@@ -30,21 +30,18 @@ func (set *NumbersSet) AddNumber(num NumberInfo) error {
 	return nil
 }
 
-func (set *NumbersSet) AddLookup(lookup NumberInfoLookup) error {
+func (set *NumbersSet) AddLookup(lookup NumberLookup) error {
 	lookup.NumberE164 = strings.TrimSpace(lookup.NumberE164)
 	if len(lookup.NumberE164) == 0 {
 		return errors.New("E_NO_NUMBER")
 	}
-	if numberInfo, ok := set.NumbersMap[lookup.NumberE164]; ok {
-		numberInfo.Lookups = append(numberInfo.Lookups, lookup)
-		numberInfo.Inflate()
-		set.NumbersMap[lookup.NumberE164] = numberInfo
-	} else {
-		numberInfo := NewNumberInfo()
-		numberInfo.Lookups = append(numberInfo.Lookups, lookup)
-		numberInfo.Inflate()
-		set.NumbersMap[lookup.NumberE164] = numberInfo
+	numberInfo, ok := set.NumbersMap[lookup.NumberE164]
+	if !ok {
+		numberInfo = NewNumberInfo()
 	}
+	numberInfo.Lookups = append(numberInfo.Lookups, lookup)
+	numberInfo.Inflate()
+	set.NumbersMap[lookup.NumberE164] = numberInfo
 	return nil
 }
 

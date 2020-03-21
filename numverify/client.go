@@ -7,7 +7,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/grokify/gophonenumbers"
 	hum "github.com/grokify/gotilla/net/httputilmore"
 	uu "github.com/grokify/gotilla/net/urlutil"
 )
@@ -109,16 +108,6 @@ type ResponseSuccess struct {
 	Location            string `json:"location,omitempty"`
 	Carrier             string `json:"carrier,omitempty"`
 	LineType            string `json:"line_type,omitempty"`
-}
-
-func (rs *ResponseSuccess) NumberInfoLookup() gophonenumbers.NumberInfoLookup {
-	cni := gophonenumbers.NumberInfoLookup{
-		NumberE164: rs.InternationalFormat,
-		Carrier: gophonenumbers.Carrier{
-			Name:     rs.Carrier,
-			LineType: rs.LineType},
-	}
-	return cni
 }
 
 type ResponseError struct {
