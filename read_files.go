@@ -17,11 +17,10 @@ func ReadLookupsNumverify(dir, rxPattern string, numsSet *NumbersSet) (*NumbersS
 		return numsSet, err
 	}
 	for _, nRes := range nmr.Responses {
-		if nRes == nil || nRes.Success == nil || nRes.StatusCode >= 300 {
-			continue
-		}
-		e164 := strings.TrimSpace(nRes.Success.InternationalFormat)
-		if len(e164) == 0 {
+		if nRes == nil ||
+			nRes.Success == nil ||
+			nRes.StatusCode >= 300 ||
+			len(strings.TrimSpace(nRes.Success.InternationalFormat)) == 0 {
 			continue
 		}
 		lookup, err := NewNumberLookupNumverify(nRes)
@@ -45,18 +44,13 @@ func ReadLookupsTwilio(dir, rxPattern string, numsSet *NumbersSet) (*NumbersSet,
 	if err != nil {
 		return numsSet, err
 	}
-	for _, tnum := range tmr.Responses {
-		if tnum == nil {
+	for _, tRes := range tmr.Responses {
+		if tRes == nil ||
+			tRes.ApiResponseInfo.StatusCode >= 300 ||
+			len(strings.TrimSpace(tRes.PhoneNumber)) == 0 {
 			continue
 		}
-		if tnum.ApiResponseInfo.StatusCode >= 300 {
-			continue
-		}
-		e164 := strings.TrimSpace(tnum.PhoneNumber)
-		if len(e164) == 0 {
-			continue
-		}
-		lookup, err := NewNumberLookupTwilio(tnum)
+		lookup, err := NewNumberLookupTwilio(tRes)
 		if err != nil {
 			return numsSet, err
 		}
