@@ -25,7 +25,7 @@ https://numverify.com/documentation
 | Options | Long | Short | Example |
 |---------|------|-------|---------|
 | `.env` File | `--env` | `-e` | `-e=/path/to/.env` |
-| Acces Token | `--token` | `-t` | `-t=<myToken>` |
+| Access Token | `--token` | `-t` | `-t=<myToken>` |
 | Validate Number | `--number` | `-n` | `-n=<number>` |
 | List Countries | `--countries` | `-c` | `-c` |
 
