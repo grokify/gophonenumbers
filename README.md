@@ -6,7 +6,7 @@ Numverify Go Client SDK and CLI app
 [![Docs][docs-godoc-svg]][docs-godoc-link]
 [![License][license-svg]][license-link]
 
-This library provides phone number infomration functionality including ability toaccess number look up APIs. It includes a Go client and CLI app for the Numverify API, and Twilio API.
+This library provides phone number information functionality including ability to access number look up APIs. It includes a Go client and CLI app for the Numverify API, and Twilio API.
 
 https://numverify.com/documentation
 
