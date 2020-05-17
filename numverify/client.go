@@ -79,6 +79,9 @@ func (nc *Client) Countries() (map[string]Country, *ResponseError, *http.Respons
 	}
 
 	err = json.Unmarshal(respBody, &countries)
+	if err != nil {
+		return countries, nil, resp, err
+	}
 
 	var apiErrorInfo ResponseError
 	err = json.Unmarshal(respBody, &apiErrorInfo)
