@@ -134,7 +134,7 @@ func NewMultiResultsFiles(dir string, rxPattern string) (MultiResults, error) {
 	if err != nil {
 		return all, err
 	}
-	files, err := ioutilmore.DirEntriesReNotEmpty(dir, rx)
+	files, _, err := ioutilmore.ReadDirRx(dir, rx, true)
 	if err != nil {
 		return all, err
 	}

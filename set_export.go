@@ -8,8 +8,8 @@ import (
 	"github.com/pkg/errors"
 )
 
-func NumbersSetToTable(numsSet *NumbersSet) table.TableData {
-	tbl := table.NewTableData()
+func NumbersSetToTable(numsSet *NumbersSet) table.Table {
+	tbl := table.NewTable()
 	tbl.Columns = []string{
 		"number", "lineType", "carrier", "lineTypes", "carriers", "raw"}
 	for _, num := range numsSet.NumbersMap {
