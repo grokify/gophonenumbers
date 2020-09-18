@@ -12,6 +12,7 @@ var rxNANPFormat = regexp.MustCompile(`^\+(1([0-9]{3})([0-9]{3})([0-9]{4}))$`)
 type Components struct {
 	E164             string
 	E164Uint         uint
+	RegionCode       string
 	CountryCode      uint
 	NANPAreaCode     uint // NPA - Numbering plan area code
 	NANPExchangeCode uint // NXX - Central office (exchange) code
