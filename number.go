@@ -14,6 +14,14 @@ const (
 	CarrierVerizon = "verizon.com"
 )
 
+type LineType int
+
+const (
+	LineLocal LineType = iota
+	LineMobile
+	LineTollFree
+)
+
 type NumberInfo struct {
 	NumberE164       string
 	Components       Components
