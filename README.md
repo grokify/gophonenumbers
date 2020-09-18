@@ -1,5 +1,5 @@
-Numverify Go Client SDK and CLI app
-===================================
+GoPhoneNumbers
+==============
 
 [![Build Status][build-status-svg]][build-status-link]
 [![Go Report Card][goreport-svg]][goreport-link]
