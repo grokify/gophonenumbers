@@ -10,9 +10,9 @@ import (
 	"time"
 
 	"github.com/grokify/gophonenumbers/common"
-	"github.com/grokify/gotilla/io/ioutilmore"
-	"github.com/grokify/gotilla/time/timeutil"
-	"github.com/grokify/gotilla/type/stringsutil"
+	"github.com/grokify/simplego/io/ioutilmore"
+	"github.com/grokify/simplego/time/timeutil"
+	"github.com/grokify/simplego/type/stringsutil"
 	log "github.com/sirupsen/logrus"
 )
 

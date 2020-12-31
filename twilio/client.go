@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/grokify/gotilla/net/httputilmore"
 	"github.com/grokify/oauth2more"
+	"github.com/grokify/simplego/net/httputilmore"
 )
 
 const (

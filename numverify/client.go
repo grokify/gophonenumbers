@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	hum "github.com/grokify/gotilla/net/httputilmore"
-	uu "github.com/grokify/gotilla/net/urlutil"
+	hum "github.com/grokify/simplego/net/httputilmore"
+	uu "github.com/grokify/simplego/net/urlutil"
 )
 
 const (
