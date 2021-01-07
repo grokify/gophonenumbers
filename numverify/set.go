@@ -19,8 +19,7 @@ import (
 
 var MultiLimit = 0 // test limit to gracefully exit process early.
 
-// MultiResults is designed to handle large volumes
-// of requests.
+// MultiResults is designed to handle large volumes of requests.
 type MultiResults struct {
 	Counts    map[string]int
 	Responses map[string]*Response
@@ -124,7 +123,7 @@ func GetWriteValidationMulti(client *Client, requestNumbers, skipNumbers []strin
 	return resps
 }
 
-func NewMultiResultsFiles(dir string, rxPattern string) (MultiResults, error) {
+func ReadFilesMultiResults(dir string, rxPattern string) (MultiResults, error) {
 	dir = strings.TrimSpace(dir)
 	if len(dir) == 0 {
 		dir = "."
@@ -158,7 +157,7 @@ func NewMultiResultsFiles(dir string, rxPattern string) (MultiResults, error) {
 }
 
 func GetNumbers(nvClient Client, filebase string, byNumber frequency.FrequencyStats) error {
-	existing, err := NewMultiResultsFiles(".", filebase+`_\d+\-\d+\.json$`)
+	existing, err := ReadFilesMultiResults(".", filebase+`_\d+\-\d+\.json$`)
 	if err != nil {
 		return err
 	}

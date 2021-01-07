@@ -12,7 +12,7 @@ func ReadLookupsNumverify(dir, rxPattern string, numsSet *NumbersSet) (*NumbersS
 		newNumsSet := NewNumbersSet()
 		numsSet = &newNumsSet
 	}
-	nmr, err := numverify.NewMultiResultsFiles(dir, rxPattern)
+	nmr, err := numverify.ReadFilesMultiResults(dir, rxPattern)
 	if err != nil {
 		return numsSet, err
 	}
