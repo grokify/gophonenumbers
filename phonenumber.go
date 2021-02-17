@@ -4,15 +4,15 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ttacon/libphonenumber"
+	"github.com/nyaruka/phonenumbers"
 )
 
 type PhoneNumber struct {
-	Number *libphonenumber.PhoneNumber
+	Number *phonenumbers.PhoneNumber
 }
 
 func (num *PhoneNumber) GetRegionCode() string {
-	return libphonenumber.GetRegionCodeForNumber(num.Number)
+	return phonenumbers.GetRegionCodeForNumber(num.Number)
 }
 
 func (num *PhoneNumber) GetCountryCode() int32 {
@@ -20,7 +20,7 @@ func (num *PhoneNumber) GetCountryCode() int32 {
 }
 
 func (num *PhoneNumber) GetNumberE164() string {
-	return libphonenumber.Format(num.Number, libphonenumber.E164)
+	return phonenumbers.Format(num.Number, phonenumbers.E164)
 }
 
 func (num *PhoneNumber) GetNumberE164Uint() uint {
@@ -46,8 +46,8 @@ func (num *PhoneNumber) GetAreaCode() int {
 
 func (num *PhoneNumber) GetAreaCodeString() string {
 	// Get the cleaned number and the length of the area code.
-	natSigNumber := libphonenumber.GetNationalSignificantNumber(num.Number)
-	geoCodeLength := libphonenumber.GetLengthOfGeographicalAreaCode(num.Number)
+	natSigNumber := phonenumbers.GetNationalSignificantNumber(num.Number)
+	geoCodeLength := phonenumbers.GetLengthOfGeographicalAreaCode(num.Number)
 	// Extract the area code.
 	areaCode := ""
 	if geoCodeLength > 0 {

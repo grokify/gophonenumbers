@@ -1,13 +1,13 @@
 package gophonenumbers
 
 import (
-	"github.com/ttacon/libphonenumber"
+	"github.com/nyaruka/phonenumbers"
 )
 
 // ParseAreaCode will attempt to extract an areacode from a phone
 // number string.
 func ParseAreaCodeString(numberToParse, defaultRegion string) (string, error) {
-	num, err := libphonenumber.Parse(numberToParse, defaultRegion)
+	num, err := phonenumbers.Parse(numberToParse, defaultRegion)
 	if err != nil {
 		return "", err
 	}
