@@ -7,13 +7,12 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/grokify/gophonenumbers/common"
 	"github.com/grokify/simplego/io/ioutilmore"
 	"github.com/grokify/simplego/time/timeutil"
 	"github.com/grokify/simplego/type/stringsutil"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 var MultiLimit = 0 // test limit to gracefully exit process early.
@@ -94,17 +93,21 @@ func GetWriteValidationMulti(client *Client, requestNumbers, skipNumbers []strin
 			e164Number, &Params{Type: "carrier"})
 		resps.Responses[e164Number] = &validate
 		if logAt > 0 && i%int(logAt) == 0 {
-			apiStatus := "S"
+			/*apiStatus := "S"
 			if validate.ApiResponseInfo.StatusCode >= 300 {
 				apiStatus = "F"
-			}
-			log.Infof("[%v/%v][%v][%v][%s]", i, count, e164Number, apiStatus,
-				time.Now().Format(time.RFC3339))
+			}*/
+			log.Info().
+				Int("num", i).
+				Int("count", count).
+				Str("e164number", e164Number).
+				Int("httpStatus", validate.ApiResponseInfo.StatusCode).
+				Msg("logAt")
 		}
 		if fileAt > 0 && i%int(fileAt) == 0 && len(resps.Responses) > 0 {
 			err := resps.Write(common.BuildFilename(filenameBase, i, count))
 			if err != nil {
-				log.Error(err)
+				log.Error().Err(err)
 			}
 			resps = NewMultiResults()
 		}
@@ -115,7 +118,7 @@ func GetWriteValidationMulti(client *Client, requestNumbers, skipNumbers []strin
 	if len(resps.Responses) > 0 {
 		err := resps.Write(common.BuildFilename(filenameBase, i, count))
 		if err != nil {
-			log.Error(err)
+			log.Error().Err(err)
 		}
 	}
 	return resps
