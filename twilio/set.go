@@ -2,6 +2,7 @@ package twilio
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"path/filepath"
 	"regexp"
@@ -51,6 +52,14 @@ func (mr *MultiResults) AddResponses(resps map[string]*NumberInfo) {
 			mr.Responses[k] = v
 		}
 	}
+}
+
+func (mr *MultiResults) GetNumberInfo(e164Number string) (*NumberInfo, error) {
+	e164Number = strings.TrimSpace(e164Number)
+	if ni, ok := mr.Responses[e164Number]; ok {
+		return ni, nil
+	}
+	return nil, fmt.Errorf("number [%s] not found", e164Number)
 }
 
 func (mr *MultiResults) NumbersSuccess() []string {
