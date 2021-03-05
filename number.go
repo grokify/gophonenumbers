@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -108,4 +109,12 @@ func (ni *NumberInfo) Inflate() error {
 
 func (ni *NumberInfo) InflateComponents() {
 	ni.Components = ParseE164(ni.NumberE164)
+}
+
+func E164Atoi(s string) (int, error) {
+	s = strings.TrimSpace(s)
+	if strings.Index(s, "+") == 0 {
+		s = s[1:]
+	}
+	return strconv.Atoi(s)
 }
