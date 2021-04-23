@@ -4,11 +4,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
 	hum "github.com/grokify/simplego/net/httputilmore"
-	uu "github.com/grokify/simplego/net/urlutil"
+	"github.com/grokify/simplego/net/urlutil"
 )
 
 const (
@@ -33,9 +34,11 @@ func (nc *Client) Validate(params Params) (*Response, *http.Response, error) {
 	if len(params.AccessKey) == 0 {
 		params.AccessKey = nc.AccessKey
 	}
-	apiURL := uu.BuildURLQueryString(ValidateEndpoint, params)
-
-	resp, respBody, err := hum.GetResponseAndBytes(apiURL)
+	apiURL, err := urlutil.URLAddQueryValues(ValidateEndpoint, params.MapStringSlice())
+	if err != nil {
+		return nil, nil, err
+	}
+	resp, respBody, err := hum.GetResponseAndBytes(apiURL.String())
 
 	nvResp := Response{
 		StatusCode: resp.StatusCode,
@@ -98,6 +101,15 @@ type Params struct {
 	CountryCode string `url:"country_code" json:"country_code,omitempty"`
 	Format      int    `url:"format" json:"format,omitempty"`
 	Callback    string `url:"callback" json:"callback,omitempty"`
+}
+
+func (params *Params) MapStringSlice() map[string][]string {
+	return map[string][]string{
+		"access_key":   []string{params.AccessKey},
+		"number":       []string{params.Number},
+		"country_code": []string{params.CountryCode},
+		"format":       []string{strconv.Itoa(params.Format)},
+		"callback":     []string{params.Callback}}
 }
 
 type ResponseSuccess struct {

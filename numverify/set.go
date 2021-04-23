@@ -138,7 +138,7 @@ func ReadFilesMultiResults(dir string, rxPattern string) (MultiResults, error) {
 	if err != nil {
 		return all, err
 	}
-	files, _, err := ioutilmore.ReadDirRx(dir, rx, true)
+	files, _, err := ioutilmore.ReadDirMore(dir, rx, true, true)
 	if err != nil {
 		return all, err
 	}
