@@ -105,11 +105,11 @@ type Params struct {
 
 func (params *Params) MapStringSlice() map[string][]string {
 	return map[string][]string{
-		"access_key":   []string{params.AccessKey},
-		"number":       []string{params.Number},
-		"country_code": []string{params.CountryCode},
-		"format":       []string{strconv.Itoa(params.Format)},
-		"callback":     []string{params.Callback}}
+		"access_key":   {params.AccessKey},
+		"number":       {params.Number},
+		"country_code": {params.CountryCode},
+		"format":       {strconv.Itoa(params.Format)},
+		"callback":     {params.Callback}}
 }
 
 type ResponseSuccess struct {
