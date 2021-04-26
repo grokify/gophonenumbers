@@ -34,7 +34,7 @@ func (nc *Client) Validate(params Params) (*Response, *http.Response, error) {
 	if len(params.AccessKey) == 0 {
 		params.AccessKey = nc.AccessKey
 	}
-	apiURL, err := urlutil.URLAddQueryValues(ValidateEndpoint, params.MapStringSlice())
+	apiURL, err := urlutil.URLAddQueryString(ValidateEndpoint, params.MapStringSlice())
 	if err != nil {
 		return nil, nil, err
 	}

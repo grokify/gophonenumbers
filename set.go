@@ -3,6 +3,7 @@ package gophonenumbers
 import (
 	"errors"
 	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/grokify/gocharts/data/frequency"
@@ -70,7 +71,7 @@ func NumbersSetAreaCodesNANP(numSet *NumbersSet) frequency.FrequencyStats {
 			num.Inflate()
 		}
 		if num.Components.NANPAreaCode > 0 {
-			fs.AddInt(int(num.Components.NANPAreaCode))
+			fs.Add(strconv.Itoa(int(num.Components.NANPAreaCode)), 1)
 		}
 	}
 	fs.Inflate()
@@ -82,7 +83,7 @@ func NumbersSetNumbersE164(numSet *NumbersSet) frequency.FrequencyStats {
 	fs := frequency.NewFrequencyStats("NumbersE164")
 	for e164, ni := range numSet.NumbersMap {
 		if len(ni.NumberE164) > 0 && e164 == ni.NumberE164 {
-			fs.AddString(e164)
+			fs.Add(e164, 1)
 		}
 	}
 	return fs
