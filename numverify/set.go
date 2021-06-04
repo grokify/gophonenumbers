@@ -161,7 +161,7 @@ func ReadFilesMultiResults(dir string, rxPattern string) (MultiResults, error) {
 	return all, nil
 }
 
-func GetNumbers(nvClient Client, filebase string, byNumber histogram.Histogram) error {
+func GetNumbers(nvClient Client, filebase string, byNumber *histogram.Histogram) error {
 	existing, err := ReadFilesMultiResults(".", filebase+`_\d+\-\d+\.json$`)
 	if err != nil {
 		return err
@@ -169,8 +169,10 @@ func GetNumbers(nvClient Client, filebase string, byNumber histogram.Histogram) 
 	skipNumbers := existing.NumbersSuccess()
 
 	wantNumbers := []string{}
-	for number := range byNumber.Bins {
-		wantNumbers = append(wantNumbers, number)
+	if byNumber != nil {
+		for number := range byNumber.Bins {
+			wantNumbers = append(wantNumbers, number)
+		}
 	}
 	GetWriteValidationMulti(&nvClient, wantNumbers, skipNumbers, filebase, uint(20), uint(5000))
 
