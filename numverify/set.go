@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/grokify/gocharts/data/frequency"
+	"github.com/grokify/gocharts/data/histogram"
 	"github.com/grokify/gophonenumbers/common"
 	"github.com/grokify/simplego/io/ioutilmore"
 	"github.com/grokify/simplego/time/timeutil"
@@ -161,7 +161,7 @@ func ReadFilesMultiResults(dir string, rxPattern string) (MultiResults, error) {
 	return all, nil
 }
 
-func GetNumbers(nvClient Client, filebase string, byNumber frequency.FrequencyStats) error {
+func GetNumbers(nvClient Client, filebase string, byNumber histogram.Histogram) error {
 	existing, err := ReadFilesMultiResults(".", filebase+`_\d+\-\d+\.json$`)
 	if err != nil {
 		return err
@@ -169,7 +169,7 @@ func GetNumbers(nvClient Client, filebase string, byNumber frequency.FrequencySt
 	skipNumbers := existing.NumbersSuccess()
 
 	wantNumbers := []string{}
-	for number := range byNumber.Items {
+	for number := range byNumber.Bins {
 		wantNumbers = append(wantNumbers, number)
 	}
 	GetWriteValidationMulti(&nvClient, wantNumbers, skipNumbers, filebase, uint(20), uint(5000))

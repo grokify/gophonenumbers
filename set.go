@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/grokify/gocharts/data/frequency"
+	"github.com/grokify/gocharts/data/histogram"
 	"github.com/grokify/simplego/encoding/jsonutil"
 )
 
@@ -59,13 +59,13 @@ func (set *NumbersSet) Inflate() {
 	}
 }
 
-func (set *NumbersSet) AreaCodes() frequency.FrequencyStats {
+func (set *NumbersSet) AreaCodes() *histogram.Histogram {
 	return NumbersSetAreaCodesNANP(set)
 }
 
-func NumbersSetAreaCodesNANP(numSet *NumbersSet) frequency.FrequencyStats {
+func NumbersSetAreaCodesNANP(numSet *NumbersSet) *histogram.Histogram {
 	numSet.Inflate()
-	fs := frequency.NewFrequencyStats("AreaCodes")
+	fs := histogram.NewHistogram("AreaCodes")
 	for _, num := range numSet.NumbersMap {
 		if num.Components.NANPAreaCode == 0 {
 			num.Inflate()
@@ -78,9 +78,9 @@ func NumbersSetAreaCodesNANP(numSet *NumbersSet) frequency.FrequencyStats {
 	return fs
 }
 
-func NumbersSetNumbersE164(numSet *NumbersSet) frequency.FrequencyStats {
+func NumbersSetNumbersE164(numSet *NumbersSet) *histogram.Histogram {
 	numSet.Inflate()
-	fs := frequency.NewFrequencyStats("NumbersE164")
+	fs := histogram.NewHistogram("NumbersE164")
 	for e164, ni := range numSet.NumbersMap {
 		if len(ni.NumberE164) > 0 && e164 == ni.NumberE164 {
 			fs.Add(e164, 1)
