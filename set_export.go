@@ -13,7 +13,7 @@ func NumbersSetToTable(numsSet *NumbersSet) table.Table {
 	tbl.Columns = []string{
 		"number", "lineType", "carrier", "lineTypes", "carriers", "raw"}
 	for _, num := range numsSet.NumbersMap {
-		tbl.Records = append(tbl.Records, numberInfoToRow(num))
+		tbl.Rows = append(tbl.Rows, numberInfoToRow(num))
 	}
 	return tbl
 }
