@@ -9,7 +9,7 @@ import (
 )
 
 func NumbersSetToTable(numsSet *NumbersSet) table.Table {
-	tbl := table.NewTable()
+	tbl := table.NewTable("")
 	tbl.Columns = []string{
 		"number", "lineType", "carrier", "lineTypes", "carriers", "raw"}
 	for _, num := range numsSet.NumbersMap {

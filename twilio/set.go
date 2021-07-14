@@ -11,6 +11,7 @@ import (
 
 	"github.com/grokify/gophonenumbers/common"
 	"github.com/grokify/simplego/io/ioutilmore"
+	"github.com/grokify/simplego/os/osutil"
 	"github.com/grokify/simplego/time/timeutil"
 	"github.com/grokify/simplego/type/stringsutil"
 	"github.com/rs/zerolog/log"
@@ -143,14 +144,18 @@ func NewMultiResultsFiles(dir string, rxPattern string) (MultiResults, error) {
 	if err != nil {
 		return all, err
 	}
-	files, _, err := ioutilmore.ReadDirMore(dir, rx, true, true)
+	files, err := osutil.ReadDirMore(dir, rx, false, true, false)
 	if err != nil {
 		return all, err
 	}
-	for _, fi := range files {
+	for _, entry := range files {
 		mResults := NewMultiResults()
 		err := ioutilmore.ReadFileJSON(
-			filepath.Join(dir, fi.Name()), &mResults)
+			filepath.Join(dir, entry.Name()), &mResults)
+		if err != nil {
+			return all, err
+		}
+		fi, err := entry.Info()
 		if err != nil {
 			return all, err
 		}
