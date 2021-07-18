@@ -91,21 +91,3 @@ func (c *Client) Validate(number string, opts *Params) (NumberInfo, error) {
 		Body:       string(body)}
 	return ni, nil
 }
-
-type NumberInfo struct {
-	CallerName      map[string]string         `json:"caller_name,omitempty"`
-	CountryCode     string                    `json:"country_code,omitempty"`
-	PhoneNumber     string                    `json:"phone_number,omitempty"`
-	NationalFormat  string                    `json:"national_format,omitempty"`
-	URL             string                    `json:"url,omitempty"`
-	Carrier         Carrier                   `json:"carrier,omitempty"`
-	ApiResponseInfo httputilmore.ResponseInfo `json:"api_response_info,omitempty"`
-}
-
-type Carrier struct {
-	MobileCountryCode string `json:"mobile_country_code,omitempty"`
-	MobileNetworkCode string `json:"mobile_network_code,omitempty"`
-	Name              string `json:"name,omitempty"`
-	Type              string `json:"type,omitempty"`
-	ErrorCode         string `json:"error_code,omitempty"`
-}
