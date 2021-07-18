@@ -252,8 +252,8 @@ github.com/grokify/elastirad-go v0.1.2/go.mod h1:EKkozVVN3RkQ7neSu974z4BNSeuhRqP
 github.com/grokify/go-salesforce v0.1.3/go.mod h1:XSOw6m9JggGdHOH5wqibiSPu3s49ScO0eg7mzFzPpH0=
 github.com/grokify/gocharts v1.9.0/go.mod h1:L69qGvVjBaWFgxT6Wpjb/oJURmzEGnVQ+M4hJ+ndQDQ=
 github.com/grokify/gocharts v1.10.0/go.mod h1:3To+iglTzjiVd0MUkdpz34awA6VL4JTxR0AWy9hlmcA=
-github.com/grokify/gocharts v1.11.1 h1:VYfIbpcKqb1rj6Apc9QYlF3pFsEA74xN0c9Q942i/C4=
-github.com/grokify/gocharts v1.11.1/go.mod h1:l77R7kRNJxwyiPGrAFIL1ozEP6g7NGaON4CLTwqynVw=
+github.com/grokify/gocharts v1.12.1 h1:wkkc9aqAmPmEQwCcUTRArQZlK0GvXAWpRYoG3dsDGec=
+github.com/grokify/gocharts v1.12.1/go.mod h1:l77R7kRNJxwyiPGrAFIL1ozEP6g7NGaON4CLTwqynVw=
 github.com/grokify/gostor v0.1.1/go.mod h1:whP8FD7yG6ucyiy4ZBZzjlb0jzdaGEpIAd3Pd8CVjds=
 github.com/grokify/oauth2more v0.4.6 h1:7KZJ8/4Un8JTckQxNTorniGff3jwZWAR6nbkQoiYtSw=
 github.com/grokify/oauth2more v0.4.6/go.mod h1:4LpR49jpvFi7SVXcvBL3Kv3LC3QhJL9ra8PFbU6Y608=
@@ -261,8 +261,9 @@ github.com/grokify/simplego v0.26.8/go.mod h1:UKobvO2/X3aFy5fwNUxaW6YFK8A3IKCoIR
 github.com/grokify/simplego v0.27.2/go.mod h1:UKobvO2/X3aFy5fwNUxaW6YFK8A3IKCoIRqtVNhsdZU=
 github.com/grokify/simplego v0.27.4/go.mod h1:UKobvO2/X3aFy5fwNUxaW6YFK8A3IKCoIRqtVNhsdZU=
 github.com/grokify/simplego v0.28.0/go.mod h1:UKobvO2/X3aFy5fwNUxaW6YFK8A3IKCoIRqtVNhsdZU=
-github.com/grokify/simplego v0.28.1 h1:TVg+jVk/XNpf4iYvVdAnIMvJZHuwajOI8ByWMBSbwPo=
 github.com/grokify/simplego v0.28.1/go.mod h1:UKobvO2/X3aFy5fwNUxaW6YFK8A3IKCoIRqtVNhsdZU=
+github.com/grokify/simplego v0.28.2 h1:VhWT/Z5KFdUBLgMrgMt3yhdVw+iIbgG3pLUwZE+oCg8=
+github.com/grokify/simplego v0.28.2/go.mod h1:UKobvO2/X3aFy5fwNUxaW6YFK8A3IKCoIRqtVNhsdZU=
 github.com/grpc-ecosystem/go-grpc-middleware v1.0.0/go.mod h1:FiyG127CGDf3tlThmgyCl78X/SZQqEOJBCDaAfeWzPs=
 github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0/go.mod h1:8NvIoxWQoOIhqOTXgfV/d3M/q6VIi02HzZEHgUlZvzk=
 github.com/grpc-ecosystem/grpc-gateway v1.9.0/go.mod h1:vNeuVxBJEsws4ogUvrchl83t/GYV9WGTSLVdBhOQFDY=
