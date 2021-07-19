@@ -23,6 +23,13 @@ func (set *NumberSet) Add(num Number) error {
 	return nil
 }
 
+func (set *NumberSet) RemoveLookups() {
+	for e164, num := range set.Numbers {
+		num.RemoveLookups()
+		set.Numbers[e164] = num
+	}
+}
+
 func (set *NumberSet) MapNumberCarrierName() map[string]string {
 	mss := map[string]string{}
 	for _, num := range set.Numbers {

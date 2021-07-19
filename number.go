@@ -32,3 +32,7 @@ func (num *Number) SetLatest(source string) error {
 	num.CarrierNumberInfo = latest.CarrierNumberInfo
 	return nil
 }
+
+func (num *Number) RemoveLookups() {
+	num.Lookups = NewLookupSet()
+}
