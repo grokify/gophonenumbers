@@ -64,6 +64,14 @@ func (set *NumberSet) MapNumberLineType() map[string]string {
 	return mss
 }
 
+func (set *NumberSet) HistogramCarrierName() map[string]int {
+	stats := map[string]int{}
+	for _, num := range set.Numbers {
+		stats[num.CarrierNumberInfo.Name] += 1
+	}
+	return stats
+}
+
 func (set *NumberSet) WriteFileJSON(filename, prefix, indent string, perm fs.FileMode) error {
 	return jsonutil.WriteFile(filename, set, prefix, indent, perm)
 }
