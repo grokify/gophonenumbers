@@ -2,9 +2,12 @@ package gophonenumbers
 
 import (
 	"errors"
+	"fmt"
 	"io/fs"
+	"strings"
 
 	"github.com/grokify/simplego/encoding/jsonutil"
+	"github.com/grokify/simplego/type/stringsutil"
 )
 
 type NumberSet struct {
@@ -20,6 +23,21 @@ func (set *NumberSet) Add(num Number) error {
 		return errors.New("no E.164 number")
 	}
 	set.Numbers[num.E164Number] = num
+	return nil
+}
+
+func (set *NumberSet) Validate() error {
+	for e164, num := range set.Numbers {
+		nums := stringsutil.SliceCondenseSpace([]string{
+			e164,
+			num.E164Number,
+			num.CarrierNumberInfo.E164Number}, true, true)
+		if len(nums) == 0 {
+			errors.New("no phone number")
+		} else if len(nums) > 1 {
+			fmt.Errorf("mismmatched numbers [%s]", strings.Join(nums, ","))
+		}
+	}
 	return nil
 }
 
