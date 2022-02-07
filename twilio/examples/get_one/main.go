@@ -7,9 +7,9 @@ import (
 	"strings"
 
 	"github.com/grokify/gophonenumbers/twilio"
-	"github.com/grokify/simplego/config"
-	"github.com/grokify/simplego/fmt/fmtutil"
-	"github.com/grokify/simplego/type/stringsutil"
+	"github.com/grokify/mogo/config"
+	"github.com/grokify/mogo/fmt/fmtutil"
+	"github.com/grokify/mogo/type/stringsutil"
 	"github.com/jessevdk/go-flags"
 )
 

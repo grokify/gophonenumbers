@@ -6,8 +6,8 @@ import (
 	"io/fs"
 	"strings"
 
-	"github.com/grokify/simplego/encoding/jsonutil"
-	"github.com/grokify/simplego/type/stringsutil"
+	"github.com/grokify/mogo/encoding/jsonutil"
+	"github.com/grokify/mogo/type/stringsutil"
 )
 
 type NumberSet struct {

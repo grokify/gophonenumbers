@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/grokify/oauth2more"
-	"github.com/grokify/simplego/net/httputilmore"
+	"github.com/grokify/goauth"
+	"github.com/grokify/mogo/net/httputilmore"
 )
 
 const (
@@ -29,7 +29,7 @@ type Client struct {
 }
 
 func NewClient(accountSid, authToken string) (*Client, error) {
-	httpClient, err := oauth2more.NewClientBasicAuth(
+	httpClient, err := goauth.NewClientBasicAuth(
 		accountSid, authToken, false)
 	if err != nil {
 		return nil, err

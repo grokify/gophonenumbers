@@ -10,10 +10,10 @@ import (
 
 	"github.com/grokify/gocharts/data/histogram"
 	"github.com/grokify/gophonenumbers/common"
-	"github.com/grokify/simplego/io/ioutilmore"
-	"github.com/grokify/simplego/os/osutil"
-	"github.com/grokify/simplego/time/timeutil"
-	"github.com/grokify/simplego/type/stringsutil"
+	"github.com/grokify/mogo/io/ioutilmore"
+	"github.com/grokify/mogo/os/osutil"
+	"github.com/grokify/mogo/time/timeutil"
+	"github.com/grokify/mogo/type/stringsutil"
 	"github.com/rs/zerolog/log"
 )
 

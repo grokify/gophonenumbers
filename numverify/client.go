@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	hum "github.com/grokify/simplego/net/httputilmore"
-	"github.com/grokify/simplego/net/urlutil"
+	hum "github.com/grokify/mogo/net/httputilmore"
+	"github.com/grokify/mogo/net/urlutil"
 )
 
 const (

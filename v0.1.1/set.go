@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/grokify/gocharts/data/histogram"
-	"github.com/grokify/simplego/encoding/jsonutil"
+	"github.com/grokify/mogo/encoding/jsonutil"
 )
 
 type NumbersSet struct {
