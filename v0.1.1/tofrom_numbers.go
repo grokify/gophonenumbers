@@ -3,7 +3,7 @@ package gophonenumbers
 import (
 	"strconv"
 
-	"github.com/pkg/errors"
+	"github.com/grokify/mogo/errors/errorsutil"
 )
 
 type Direction int
@@ -52,7 +52,7 @@ func (tfSets *ToFromNumbersSets) AddNumber(num NumberInfo, direction Direction, 
 	if direction == To {
 		err := tfSets.All.To.AddNumber(num)
 		if err != nil {
-			return errors.Wrap(err, "AreaCodeNumbersSets.AddNumber")
+			return errorsutil.Wrap(err, "AreaCodeNumbersSets.AddNumber")
 		}
 		if addAreaCode {
 			num.InflateComponents()
@@ -68,7 +68,7 @@ func (tfSets *ToFromNumbersSets) AddNumber(num NumberInfo, direction Direction, 
 	}
 	err := tfSets.All.From.AddNumber(num)
 	if err != nil {
-		return errors.Wrap(err, "AreaCodeNumbersSets.AddNumber")
+		return errorsutil.Wrap(err, "AreaCodeNumbersSets.AddNumber")
 	}
 	if addAreaCode {
 		num.InflateComponents()

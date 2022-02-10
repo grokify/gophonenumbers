@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/grokify/gocharts/data/table"
-	"github.com/pkg/errors"
+	"github.com/grokify/mogo/errors/errorsutil"
 )
 
 func NumbersSetToTable(numsSet *NumbersSet) table.Table {
@@ -21,7 +21,7 @@ func NumbersSetToTable(numsSet *NumbersSet) table.Table {
 func numberInfoToRow(num NumberInfo) []string {
 	raw, err := json.Marshal(num)
 	if err != nil {
-		panic(errors.Wrap(err, "gophonenumbers.numberInfoToRow"))
+		panic(errorsutil.Wrap(err, "gophonenumbers.numberInfoToRow"))
 	}
 	return []string{
 		num.NumberE164,
