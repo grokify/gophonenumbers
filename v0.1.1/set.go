@@ -49,36 +49,43 @@ func (set *NumbersSet) AddLookup(lookup NumberLookup) error {
 	return nil
 }
 
-func (set *NumbersSet) Inflate() {
+func (set *NumbersSet) Inflate() error {
 	for e164, num := range set.NumbersMap {
 		e164 = strings.TrimSpace(e164)
 		if e164 != num.NumberE164 {
 			panic("number mismatch")
 		}
-		num.Inflate()
+		err := num.Inflate()
+		if err != nil {
+			return err
+		}
 		if num.Components.CountryCode == 0 {
 			num.Components = ParseE164(num.NumberE164)
 		}
 	}
+	return nil
 }
 
-func (set *NumbersSet) AreaCodes() *histogram.Histogram {
+func (set *NumbersSet) AreaCodes() (*histogram.Histogram, error) {
 	return NumbersSetAreaCodesNANP(set)
 }
 
-func NumbersSetAreaCodesNANP(numSet *NumbersSet) *histogram.Histogram {
+func NumbersSetAreaCodesNANP(numSet *NumbersSet) (*histogram.Histogram, error) {
 	numSet.Inflate()
 	fs := histogram.NewHistogram("AreaCodes")
 	for _, num := range numSet.NumbersMap {
 		if num.Components.NANPAreaCode == 0 {
-			num.Inflate()
+			err := num.Inflate()
+			if err != nil {
+				return nil, err
+			}
 		}
 		if num.Components.NANPAreaCode > 0 {
 			fs.Add(strconv.Itoa(int(num.Components.NANPAreaCode)), 1)
 		}
 	}
 	fs.Inflate()
-	return fs
+	return fs, nil
 }
 
 func NumbersSetNumbersE164(numSet *NumbersSet) *histogram.Histogram {

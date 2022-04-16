@@ -59,8 +59,8 @@ func showCountries(client *numverify.Client) {
 
 func showResponse(apiSuccessInfo interface{}, apiErrorInfo *numverify.ResponseError, resp *http.Response) {
 	fmt.Printf("API_RESPONSE_STATUS: [%v]\n", resp.StatusCode)
-	fmtutil.PrintJSON(apiErrorInfo)
-	fmtutil.PrintJSON(apiSuccessInfo)
+	fmtutil.MustPrintJSON(apiErrorInfo)
+	fmtutil.MustPrintJSON(apiSuccessInfo)
 }
 
 // main: Usage: numverify --number=+16505550100 -n=+16505550101 --verbose
@@ -87,7 +87,7 @@ func main() {
 	if len(opts.WriteFiles) > 0 {
 		res := numverify.GetWriteValidationMulti(client,
 			opts.Numbers, []string{}, opts.Fileroot, opts.LogAt, opts.FileAt)
-		fmtutil.PrintJSON(res)
+		fmtutil.MustPrintJSON(res)
 	} else {
 		if len(opts.Numbers) > 0 {
 			for _, number := range opts.Numbers {

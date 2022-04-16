@@ -19,7 +19,7 @@ const (
 
 var (
 	EnvTwilioAccountSid = "TWILIO_ACCOUNT_SID"
-	EnvTwilioAuthToken  = "TWILIO_AUTH_TOKEN"
+	EnvTwilioAuthToken  = "TWILIO_AUTH_TOKEN" // #nosec G101
 )
 
 type Client struct {

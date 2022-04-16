@@ -73,7 +73,7 @@ func (mr *MultiResults) Write(filename string) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(filename, bytes, 0644)
+	return ioutil.WriteFile(filename, bytes, 0600)
 }
 
 func GetWriteValidationMulti(client *Client, requestNumbers, skipNumbers []string, filenameBase string, logAt, fileAt uint) MultiResults {

@@ -61,14 +61,17 @@ func (tfSets *ToFromNumbersSets) AddNumber(num NumberInfo, direction Direction, 
 			if !ok {
 				tfSetAC = NewToFromNumbersSet()
 			}
-			tfSetAC.AddNumber(num, direction)
+			err := tfSetAC.AddNumber(num, direction)
+			if err != nil {
+				return err
+			}
 			tfSets.AreaCodesMap[areaCode] = tfSetAC
 		}
 		return nil
 	}
 	err := tfSets.All.From.AddNumber(num)
 	if err != nil {
-		return errorsutil.Wrap(err, "AreaCodeNumbersSets.AddNumber")
+		return errorsutil.Wrap(err, "func AreaCodeNumbersSets.AddNumber")
 	}
 	if addAreaCode {
 		num.InflateComponents()
@@ -77,18 +80,27 @@ func (tfSets *ToFromNumbersSets) AddNumber(num NumberInfo, direction Direction, 
 		if !ok {
 			tfSetAC = NewToFromNumbersSet()
 		}
-		tfSetAC.AddNumber(num, direction)
+		err := tfSetAC.AddNumber(num, direction)
+		if err != nil {
+			return err
+		}
 		tfSets.AreaCodesMap[areaCode] = tfSetAC
 	}
 	return nil
 }
 
-func (tfSets *ToFromNumbersSets) Stats() ToFromNumbersSetsStats {
-	toAreaCodes := tfSets.All.To.AreaCodes()
-	fromAreaCodes := tfSets.All.From.AreaCodes()
+func (tfSets *ToFromNumbersSets) Stats() (ToFromNumbersSetsStats, error) {
+	toAreaCodes, err := tfSets.All.To.AreaCodes()
+	if err != nil {
+		return ToFromNumbersSetsStats{}, err
+	}
+	fromAreaCodes, err := tfSets.All.From.AreaCodes()
+	if err != nil {
+		return ToFromNumbersSetsStats{}, err
+	}
 	return ToFromNumbersSetsStats{
 		ToAreaCodeCount:   uint(len(toAreaCodes.Bins)),
 		FromAreaCodeCount: uint(len(fromAreaCodes.Bins)),
 		ToNumberCount:     uint(len(tfSets.All.To.NumbersMap)),
-		FromNumberCount:   uint(len(tfSets.All.From.NumbersMap))}
+		FromNumberCount:   uint(len(tfSets.All.From.NumbersMap))}, nil
 }
