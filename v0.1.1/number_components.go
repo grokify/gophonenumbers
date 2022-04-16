@@ -23,7 +23,7 @@ func ParseE164(e164 string) Components {
 	e164 = strings.TrimSpace(e164)
 	comp := Components{E164: e164}
 	m := rxNANPFormat.FindAllStringSubmatch(e164, -1)
-	if m != nil && len(m) > 0 {
+	if len(m) > 0 {
 		comp.CountryCode = 1
 		e164int, err := strconv.Atoi(m[0][1])
 		if err != nil {

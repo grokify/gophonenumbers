@@ -42,7 +42,7 @@ func (set LookupSet) Latest(source string) (Lookup, error) {
 		times = append(times, dtKey)
 	}
 	if len(times) == 0 {
-		return Lookup{}, fmt.Errorf("no lookup for source [%s]", string(source))
+		return Lookup{}, fmt.Errorf("no lookup for source [%s]", source)
 	}
 	if len(times) == 1 {
 		return set.LookupMap[times[0]], nil

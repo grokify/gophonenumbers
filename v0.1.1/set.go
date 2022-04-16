@@ -71,7 +71,10 @@ func (set *NumbersSet) AreaCodes() (*histogram.Histogram, error) {
 }
 
 func NumbersSetAreaCodesNANP(numSet *NumbersSet) (*histogram.Histogram, error) {
-	numSet.Inflate()
+	err := numSet.Inflate()
+	if err != nil {
+		return nil, err
+	}
 	fs := histogram.NewHistogram("AreaCodes")
 	for _, num := range numSet.NumbersMap {
 		if num.Components.NANPAreaCode == 0 {
@@ -88,13 +91,16 @@ func NumbersSetAreaCodesNANP(numSet *NumbersSet) (*histogram.Histogram, error) {
 	return fs, nil
 }
 
-func NumbersSetNumbersE164(numSet *NumbersSet) *histogram.Histogram {
-	numSet.Inflate()
+func NumbersSetNumbersE164(numSet *NumbersSet) (*histogram.Histogram, error) {
+	err := numSet.Inflate()
+	if err != nil {
+		return nil, err
+	}
 	fs := histogram.NewHistogram("NumbersE164")
 	for e164, ni := range numSet.NumbersMap {
 		if len(ni.NumberE164) > 0 && e164 == ni.NumberE164 {
 			fs.Add(e164, 1)
 		}
 	}
-	return fs
+	return fs, nil
 }

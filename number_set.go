@@ -35,7 +35,7 @@ func (set *NumberSet) Validate() error {
 		if len(nums) == 0 {
 			return errors.New("no phone number")
 		} else if len(nums) > 1 {
-			fmt.Errorf("mismmatched numbers [%s]", strings.Join(nums, ","))
+			return fmt.Errorf("mismmatched numbers [%s]", strings.Join(nums, ","))
 		}
 	}
 	return nil
