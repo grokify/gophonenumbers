@@ -63,12 +63,14 @@ func (fng *FakeNumberGenerator) RandomLocalNumberUS() (uint64, error) {
 // AreaCode + Prefix + Line Number
 func (fng *FakeNumberGenerator) RandomLocalNumberUSAreaCodes(acs []uint16) (uint64, error) {
 	idx, err := randutil.CryptoRandInt64(nil, int64(len(acs)))
-	ac := acs[idx]
+	if err != nil {
+		return 0, err
+	}
 	num, err := fng.RandomLineNumber()
 	if err != nil {
 		return 0, err
 	}
-	return fng.LocalNumberUS(ac, num), nil
+	return fng.LocalNumberUS(acs[idx], num), nil
 }
 
 // LocalNumberUS returns a US E.164 number given an areacode and line number
