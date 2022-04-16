@@ -33,7 +33,7 @@ func (set *NumberSet) Validate() error {
 			num.E164Number,
 			num.CarrierNumberInfo.E164Number}, true, true)
 		if len(nums) == 0 {
-			errors.New("no phone number")
+			return errors.New("no phone number")
 		} else if len(nums) > 1 {
 			fmt.Errorf("mismmatched numbers [%s]", strings.Join(nums, ","))
 		}

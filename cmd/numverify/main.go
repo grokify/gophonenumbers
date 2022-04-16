@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -10,8 +9,9 @@ import (
 	"github.com/grokify/gophonenumbers/numverify"
 	"github.com/grokify/mogo/config"
 	"github.com/grokify/mogo/fmt/fmtutil"
+	"github.com/grokify/mogo/log/logutil"
 	"github.com/grokify/mogo/type/stringsutil"
-	"github.com/jessevdk/go-flags"
+	flags "github.com/jessevdk/go-flags"
 )
 
 type cliOptions struct {
@@ -68,18 +68,14 @@ func main() {
 	opts := cliOptions{}
 
 	_, err := flags.Parse(&opts)
-	if err != nil {
-		log.Fatal(err)
-	}
+	logutil.FatalErr(err)
 	opts.Inflate()
 	if len(opts.Verbose) > 0 {
-		fmtutil.PrintJSON(opts)
+		fmtutil.MustPrintJSON(opts)
 	}
 
 	err = config.LoadDotEnvFirst(opts.EnvFile, os.Getenv("ENV_PATH"), "./.env")
-	if err != nil {
-		log.Fatal(err)
-	}
+	logutil.FatalErr(err)
 
 	numverifyAccessToken := strings.TrimSpace(opts.Token)
 	if len(numverifyAccessToken) == 0 {

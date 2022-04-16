@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
 	"github.com/grokify/mogo/fmt/fmtutil"
-	"github.com/jessevdk/go-flags"
+	"github.com/grokify/mogo/log/logutil"
+	flags "github.com/jessevdk/go-flags"
 	"github.com/nyaruka/phonenumbers"
 )
 
@@ -20,9 +20,7 @@ type Options struct {
 func main() {
 	var opts Options
 	_, err := flags.Parse(&opts)
-	if err != nil {
-		log.Fatal(err)
-	}
+	logutil.FatalErr(err)
 
 	opts.Number = strings.TrimSpace(opts.Number)
 	if len(opts.Number) == 0 {
@@ -31,9 +29,6 @@ func main() {
 	}
 
 	num, err := phonenumbers.Parse(opts.Number, opts.Country)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmtutil.PrintJSON(num)
-
+	logutil.FatalErr(err)
+	fmtutil.MustPrintJSON(num)
 }

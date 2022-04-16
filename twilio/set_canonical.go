@@ -11,7 +11,10 @@ func (mr *MultiResults) Canonical() (gophonenumbers.NumberSet, error) {
 		if err != nil {
 			return set, err
 		}
-		set.Add(numInfoCan)
+		err = set.Add(numInfoCan)
+		if err != nil {
+			return set, err
+		}
 	}
 	return set, nil
 }
