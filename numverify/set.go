@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/grokify/gocharts/data/histogram"
+	"github.com/grokify/gocharts/v2/data/histogram"
 	"github.com/grokify/gophonenumbers/common"
 	"github.com/grokify/mogo/io/ioutilmore"
 	"github.com/grokify/mogo/os/osutil"
