@@ -1,9 +1,6 @@
 package gophonenumbers
 
 import (
-	"math/rand"
-	"time"
-
 	"github.com/grokify/mogo/crypto/randutil"
 )
 
@@ -14,20 +11,24 @@ const (
 
 type FakeNumberGenerator struct {
 	AreaCodes []uint16
-	Rand      *rand.Rand
+	//	Rand      *rand.Rand
 }
 
 func NewFakeNumberGenerator(areacodes []uint16) FakeNumberGenerator {
 	fng := FakeNumberGenerator{
 		AreaCodes: areacodes,
-		Rand:      rand.New(rand.NewSource(time.Now().Unix())),
+		//	Rand:      rand.New(rand.NewSource(time.Now().Unix())),
 	}
 	return fng
 }
 
 // RandomAreaCode generates a random area code.
-func (fng *FakeNumberGenerator) RandomAreaCode() uint16 {
-	return fng.AreaCodes[fng.Rand.Intn(len(fng.AreaCodes))]
+func (fng *FakeNumberGenerator) RandomAreaCode() (uint16, error) {
+	num, err := randutil.CryptoRandInt64(nil, int64(len(fng.AreaCodes)))
+	if err != nil {
+		return 0, err
+	}
+	return fng.AreaCodes[num], nil
 }
 
 // RandomLineNumber generates a random line number
@@ -51,13 +52,18 @@ func (fng *FakeNumberGenerator) RandomLocalNumberUS() (uint64, error) {
 	if err != nil {
 		return 0, err
 	}
-	return fng.LocalNumberUS(fng.RandomAreaCode(), num), nil
+	num2, err := fng.RandomAreaCode()
+	if err != nil {
+		return 0, err
+	}
+	return fng.LocalNumberUS(num2, num), nil
 }
 
 // RandomLocalNumberUS returns a US E.164 number
 // AreaCode + Prefix + Line Number
 func (fng *FakeNumberGenerator) RandomLocalNumberUSAreaCodes(acs []uint16) (uint64, error) {
-	ac := acs[fng.Rand.Intn(len(acs))]
+	idx, err := randutil.CryptoRandInt64(nil, int64(len(acs)))
+	ac := acs[idx]
 	num, err := fng.RandomLineNumber()
 	if err != nil {
 		return 0, err
