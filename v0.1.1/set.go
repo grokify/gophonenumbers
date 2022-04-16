@@ -21,7 +21,7 @@ func NewNumbersSet() NumbersSet {
 func (set *NumbersSet) AddNumber(num NumberInfo) error {
 	num.NumberE164 = strings.TrimSpace(num.NumberE164)
 	if len(num.NumberE164) == 0 {
-		return fmt.Errorf("E_NO_PHONE_NUMBER NumbersSet.AddNumber [%v]",
+		return fmt.Errorf("no phone number provide forNumbersSet.AddNumber [%v]",
 			jsonutil.MustMarshal(num, true))
 	}
 	if set.NumbersMap == nil {

@@ -30,7 +30,7 @@ func NewAreaCodeInfoStrings(ac, lat, lon string) (AreaCodeInfo, error) {
 		return aci, err
 	}
 	if i < 100 || i > 999 {
-		return aci, fmt.Errorf("Invalid Area Code %v", i)
+		return aci, fmt.Errorf("invalid Area Code [%v]", i)
 	}
 	aci.AreaCode = uint16(i)
 	geo, err := NewPointString(lat, lon)
@@ -81,7 +81,7 @@ func (a2g *AreaCodeToGeo) ReadCsvPath(csvpath string) error {
 			err = errx
 			break
 		} else if len(rec) != 3 {
-			err = fmt.Errorf("Bad LatLon Data: %v\n", rec)
+			err = fmt.Errorf("bad LatLon Data [%v]", rec)
 			break
 		}
 		aci, errx := NewAreaCodeInfoStrings(rec[0], rec[1], rec[2])
@@ -151,11 +151,11 @@ func (a2g *AreaCodeToGeo) GetDistanceMatrix() map[uint16]map[uint16]float64 {
 func (a2g *AreaCodeToGeo) GcdAreaCodes(ac1Int uint16, ac2Int uint16) (float64, error) {
 	ac1, ok := a2g.AreaCodeInfos[ac1Int]
 	if !ok {
-		return 0, fmt.Errorf("AreaCode %v Not Found.", ac1Int)
+		return 0, fmt.Errorf("areacode not found [%v]", ac1Int)
 	}
 	ac2, ok := a2g.AreaCodeInfos[ac2Int]
 	if !ok {
-		return 0, fmt.Errorf("AreaCode %v Not Found.", ac2Int)
+		return 0, fmt.Errorf("areacode not found [%v]", ac2Int)
 	}
 
 	dist2 := ac1.Point.GreatCircleDistance(ac2.Point)

@@ -38,9 +38,9 @@ type Carrier struct {
 
 func NewNumberLookupNumverify(src *numverify.Response) (NumberLookup, error) {
 	if src.Success == nil {
-		return NumberLookup{}, errors.New("E_NUMVERIFY_RESPONSE_IS_FAILURE")
+		return NumberLookup{}, errors.New("numverify api response is failure")
 	} else if src.StatusCode >= 300 {
-		return NumberLookup{}, fmt.Errorf("E_NUMVERIFY_RESPONSE_STATUS_CODE [%d]", src.StatusCode)
+		return NumberLookup{}, fmt.Errorf("numverify api response has bad status code [%d]", src.StatusCode)
 	}
 
 	lookup := NumberLookup{
@@ -56,13 +56,13 @@ func NewNumberLookupNumverify(src *numverify.Response) (NumberLookup, error) {
 
 func NewNumberLookupTwilio(src *twilio.NumberInfo) (NumberLookup, error) {
 	if src == nil {
-		return NumberLookup{}, errors.New("E_NO_TWILIO_SOURCE")
+		return NumberLookup{}, errors.New("no twilio source")
 	}
 	lookup := NumberLookup{
 		NumberE164:   src.PhoneNumber,
 		Carrier:      TwilioCarrierToCommon(src.Carrier),
 		LookupSource: Twilio,
-		LookupTime:   src.ApiResponseInfo.Time,
+		LookupTime:   src.APIResponseInfo.Time,
 		SourceTwilio: src}
 	return lookup, nil
 }

@@ -48,7 +48,7 @@ func (nc *Client) Validate(params Params) (*Response, *http.Response, error) {
 	if err != nil {
 		return &nvResp, resp, err
 	} else if resp.StatusCode >= 300 {
-		return &nvResp, resp, fmt.Errorf("Numverify API Error: %v", resp.StatusCode)
+		return &nvResp, resp, fmt.Errorf("numverify API Error [%v]", resp.StatusCode)
 	}
 
 	// Try both success and response. Will
@@ -78,7 +78,7 @@ func (nc *Client) Countries() (map[string]Country, *ResponseError, *http.Respons
 	if err != nil {
 		return countries, nil, resp, err
 	} else if resp.StatusCode >= 300 {
-		return countries, nil, resp, fmt.Errorf("Numverify API Error: %v", resp.StatusCode)
+		return countries, nil, resp, fmt.Errorf("numverify API Error [%v]", resp.StatusCode)
 	}
 
 	err = json.Unmarshal(respBody, &countries)

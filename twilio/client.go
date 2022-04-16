@@ -81,7 +81,7 @@ func (c *Client) Validate(number string, opts *Params) (NumberInfo, error) {
 	if err != nil {
 		return ni, err
 	}
-	ni.ApiResponseInfo = httputilmore.ResponseInfo{
+	ni.APIResponseInfo = httputilmore.ResponseInfo{
 		Name:       "twilio",
 		URL:        apiURL,
 		StatusCode: resp.StatusCode,

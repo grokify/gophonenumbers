@@ -32,7 +32,7 @@ func (set LookupSet) Add(lookup Lookup) {
 
 func (set LookupSet) Latest(source string) (Lookup, error) {
 	if set.LookupMap == nil || len(set.LookupMap) == 0 {
-		return Lookup{}, errors.New("no latest lookup. lookupSet is empty.")
+		return Lookup{}, errors.New("no latest lookup. lookupSet is empty")
 	}
 	times := []string{}
 	for dtKey, lookup := range set.LookupMap {

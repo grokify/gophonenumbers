@@ -35,7 +35,7 @@ func NewMultiResults() MultiResults {
 func (mr *MultiResults) Inflate() {
 	counts := map[string]int{}
 	for _, resp := range mr.Responses {
-		scStr := strconv.Itoa(resp.ApiResponseInfo.StatusCode)
+		scStr := strconv.Itoa(resp.APIResponseInfo.StatusCode)
 		if _, ok := counts[scStr]; !ok {
 			counts[scStr] = 0
 		}
@@ -49,7 +49,7 @@ func (mr *MultiResults) AddResponses(resps map[string]*NumberInfo) {
 	for k, v := range resps {
 		existing, ok := mr.Responses[k]
 		if !ok ||
-			(existing.ApiResponseInfo.StatusCode >= 300 && v.ApiResponseInfo.StatusCode < 300) {
+			(existing.APIResponseInfo.StatusCode >= 300 && v.APIResponseInfo.StatusCode < 300) {
 			mr.Responses[k] = v
 		}
 	}
@@ -111,7 +111,7 @@ func GetWriteValidationMulti(client *Client, requestNumbers, skipNumbers []strin
 				Int("num", i).
 				Int("count", count).
 				Str("e164number", e164Number).
-				Int("httpStatus", validate.ApiResponseInfo.StatusCode).
+				Int("httpStatus", validate.APIResponseInfo.StatusCode).
 				Msg("logAt")
 		}
 		if fileAt > 0 && i%int(fileAt) == 0 && len(resps.Responses) > 0 {
@@ -161,8 +161,8 @@ func NewMultiResultsFiles(dir string, rxPattern string) (MultiResults, error) {
 		}
 		fileModTime := fi.ModTime()
 		for key, ni := range mResults.Responses {
-			if timeutil.TimeIsZeroAny(ni.ApiResponseInfo.Time) {
-				ni.ApiResponseInfo.Time = fileModTime
+			if timeutil.TimeIsZeroAny(ni.APIResponseInfo.Time) {
+				ni.APIResponseInfo.Time = fileModTime
 				mResults.Responses[key] = ni
 			}
 		}

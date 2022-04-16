@@ -46,7 +46,7 @@ func ReadLookupsTwilio(dir, rxPattern string, numsSet *NumbersSet) (*NumbersSet,
 	}
 	for _, tRes := range tmr.Responses {
 		if tRes == nil ||
-			tRes.ApiResponseInfo.StatusCode >= 300 ||
+			tRes.APIResponseInfo.StatusCode >= 300 ||
 			len(strings.TrimSpace(tRes.PhoneNumber)) == 0 {
 			continue
 		}

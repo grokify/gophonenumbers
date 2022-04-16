@@ -14,7 +14,7 @@ type NumberInfo struct {
 	NationalFormat  string                    `json:"national_format,omitempty"`
 	URL             string                    `json:"url,omitempty"`
 	Carrier         Carrier                   `json:"carrier,omitempty"`
-	ApiResponseInfo httputilmore.ResponseInfo `json:"api_response_info,omitempty"`
+	APIResponseInfo httputilmore.ResponseInfo `json:"api_response_info,omitempty"`
 }
 
 func (num *NumberInfo) Canonical() (gophonenumbers.Number, error) {
@@ -26,10 +26,10 @@ func (num *NumberInfo) Canonical() (gophonenumbers.Number, error) {
 	lookup := gophonenumbers.Lookup{
 		CarrierNumberInfo: canNum.CarrierNumberInfo,
 		LookupSource:      gophonenumbers.SourceTwilio,
-		LookupTime:        num.ApiResponseInfo.Time.UTC()}
-	if len(num.ApiResponseInfo.Body) > 0 {
+		LookupTime:        num.APIResponseInfo.Time.UTC()}
+	if len(num.APIResponseInfo.Body) > 0 {
 		msi := map[string]interface{}{}
-		err := json.Unmarshal([]byte(num.ApiResponseInfo.Body), &msi)
+		err := json.Unmarshal([]byte(num.APIResponseInfo.Body), &msi)
 		if err != nil {
 			return canNum, err
 		}
