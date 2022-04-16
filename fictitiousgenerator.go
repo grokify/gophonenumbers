@@ -11,13 +11,11 @@ const (
 
 type FakeNumberGenerator struct {
 	AreaCodes []uint16
-	//	Rand      *rand.Rand
 }
 
 func NewFakeNumberGenerator(areacodes []uint16) FakeNumberGenerator {
 	fng := FakeNumberGenerator{
 		AreaCodes: areacodes,
-		//	Rand:      rand.New(rand.NewSource(time.Now().Unix())),
 	}
 	return fng
 }
