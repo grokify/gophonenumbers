@@ -23,8 +23,6 @@ var (
 )
 
 type Client struct {
-	accountSid string
-	authToken  string
 	httpClient *http.Client
 }
 
