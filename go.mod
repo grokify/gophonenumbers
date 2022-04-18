@@ -6,7 +6,7 @@ require (
 	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
 	github.com/grokify/goauth v0.13.4
 	github.com/grokify/gocharts/v2 v2.5.1
-	github.com/grokify/mogo v0.38.5
+	github.com/grokify/mogo v0.38.7
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/kylelemons/go-gypsy v1.0.0 // indirect
