@@ -226,8 +226,9 @@ github.com/grokify/bitcoinmath v0.1.0/go.mod h1:Y8OyDefB55NHGzi+uJshYmE4Hn5juIQq
 github.com/grokify/go-salesforce v0.2.4/go.mod h1:E0ywAexR+gkvI3spzn+JjVMQZ6bLC0U6MJKV84172u0=
 github.com/grokify/goauth v0.15.2 h1:OyvIhB6MUv1xKkEfnIMQaYTA/sYxFIKzD+8JYefEG3Y=
 github.com/grokify/goauth v0.15.2/go.mod h1:94aGHUIRMy+y2r5f8JGxPL6jgNBQ6sX6xwSQHBLpZkI=
-github.com/grokify/gocharts/v2 v2.7.3 h1:V7rb3vYw8SWIxn7c+LPMUlbFUlf2BaR/Mj7zGo4V4cc=
 github.com/grokify/gocharts/v2 v2.7.3/go.mod h1:Z3e+MJxjK04szwBkrilsu73UU7rd0RzGrxpE15PnhUY=
+github.com/grokify/gocharts/v2 v2.7.4 h1:6nr4nhC1I68gvDkZxaps9JmzqiocwzmK6EjXKXsXXsI=
+github.com/grokify/gocharts/v2 v2.7.4/go.mod h1:gOBgxV+Z4EqxjUtPLW5nyCeNFqpUj6fFh/+lBGIEUvM=
 github.com/grokify/gohttp v0.2.1/go.mod h1:lvWGlBA0PeelznQ5fFlr9GRbNOCsY86q5dmY9FqSlxE=
 github.com/grokify/gostor v0.2.1/go.mod h1:4a6v+pcFFt4uxHThTcCcarL48EkMPe5Fc/0NvCQAifY=
 github.com/grokify/mogo v0.39.4/go.mod h1:0YiyOOSD1CRchDlcfVcYntUL0E9i9y/huZSWxgDuJqY=
