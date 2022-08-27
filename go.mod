@@ -8,7 +8,7 @@ require (
 	github.com/grokify/mogo v0.40.4
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/kellydunn/golang-geo v0.7.0
-	github.com/nyaruka/phonenumbers v1.1.0
+	github.com/nyaruka/phonenumbers v1.1.1
 	github.com/rs/zerolog v1.27.0
 )
 
