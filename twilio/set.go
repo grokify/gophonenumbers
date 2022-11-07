@@ -3,7 +3,7 @@ package twilio
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 	"regexp"
 	"strconv"
@@ -80,7 +80,7 @@ func (mr *MultiResults) Write(filename string) error {
 	if err != nil {
 		return err
 	}
-	return ioutil.WriteFile(filename, bytes, 0600)
+	return os.WriteFile(filename, bytes, 0600)
 }
 
 func GetWriteValidationMulti(client *Client, requestNumbers, skipNumbers []string, filenameBase string, logAt, fileAt uint) MultiResults {

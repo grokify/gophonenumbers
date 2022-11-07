@@ -3,7 +3,7 @@ package twilio
 import (
 	"encoding/json"
 	"errors"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -73,7 +73,7 @@ func (c *Client) Validate(number string, opts *Params) (NumberInfo, error) {
 	if err != nil {
 		return ni, err
 	}
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return ni, err
 	}
