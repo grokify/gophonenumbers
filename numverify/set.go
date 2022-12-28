@@ -10,7 +10,6 @@ import (
 
 	"github.com/grokify/gocharts/v2/data/histogram"
 	"github.com/grokify/gophonenumbers/common"
-	"github.com/grokify/mogo/io/ioutilmore"
 	"github.com/grokify/mogo/os/osutil"
 	"github.com/grokify/mogo/time/timeutil"
 	"github.com/grokify/mogo/type/stringsutil"
@@ -146,7 +145,7 @@ func ReadFilesMultiResults(dir string, rxPattern string) (MultiResults, error) {
 	for _, entry := range files {
 		file := filepath.Join(dir, entry.Name())
 		mResults := NewMultiResults()
-		err := ioutilmore.ReadFileJSON(file, &mResults)
+		err := osutil.ReadFileJSON(file, &mResults)
 		if err != nil {
 			return all, err
 		}

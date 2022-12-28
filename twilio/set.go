@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/grokify/gophonenumbers/common"
-	"github.com/grokify/mogo/io/ioutilmore"
 	"github.com/grokify/mogo/os/osutil"
 	"github.com/grokify/mogo/time/timeutil"
 	"github.com/grokify/mogo/type/stringsutil"
@@ -150,7 +149,7 @@ func NewMultiResultsFiles(dir string, rxPattern string) (MultiResults, error) {
 	}
 	for _, entry := range files {
 		mResults := NewMultiResults()
-		err := ioutilmore.ReadFileJSON(
+		err := osutil.ReadFileJSON(
 			filepath.Join(dir, entry.Name()), &mResults)
 		if err != nil {
 			return all, err
