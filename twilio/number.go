@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/grokify/gophonenumbers"
-	"github.com/grokify/mogo/net/httputilmore"
+	"github.com/grokify/mogo/net/http/httputilmore"
 )
 
 type NumberInfo struct {

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	hum "github.com/grokify/mogo/net/httputilmore"
+	"github.com/grokify/mogo/net/http/httputilmore"
 	"github.com/grokify/mogo/net/urlutil"
 )
 
@@ -38,7 +38,7 @@ func (nc *Client) Validate(params Params) (*Response, *http.Response, error) {
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, respBody, err := hum.GetResponseAndBytes(apiURL.String())
+	resp, respBody, err := httputilmore.GetResponseAndBytes(apiURL.String())
 
 	nvResp := Response{
 		StatusCode: resp.StatusCode,
@@ -71,7 +71,7 @@ func (nc *Client) Validate(params Params) (*Response, *http.Response, error) {
 // Numverify API will return a 200 OK for errors such as auth errors.
 func (nc *Client) Countries() (map[string]Country, *ResponseError, *http.Response, error) {
 	apiURL := CountriesEndpoint + "?access_key=" + nc.AccessKey
-	resp, respBody, err := hum.GetResponseAndBytes(apiURL)
+	resp, respBody, err := httputilmore.GetResponseAndBytes(apiURL)
 
 	countries := map[string]Country{}
 

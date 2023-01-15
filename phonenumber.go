@@ -117,7 +117,7 @@ func (a2g *AreaCodeToGeo) AreaCodes() []uint16 {
 
 func (a2g *AreaCodeToGeo) AreaCodesSorted() []uint16 {
 	acs := a2g.AreaCodes()
-	sortutil.Uint16s(acs)
+	sortutil.Slice(acs)
 	return acs
 }
 
