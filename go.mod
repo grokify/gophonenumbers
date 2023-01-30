@@ -3,13 +3,13 @@ module github.com/grokify/gophonenumbers
 go 1.18
 
 require (
-	github.com/grokify/goauth v0.17.4
-	github.com/grokify/gocharts/v2 v2.8.8
-	github.com/grokify/mogo v0.45.0
+	github.com/grokify/goauth v0.17.5
+	github.com/grokify/gocharts/v2 v2.8.9
+	github.com/grokify/mogo v0.46.0
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.1.4
-	github.com/rs/zerolog v1.28.0
+	github.com/rs/zerolog v1.29.0
 )
 
 require (
@@ -43,7 +43,7 @@ require (
 	github.com/xuri/nfp v0.0.0-20220409054826-5e722a1d9e22 // indirect
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	golang.org/x/crypto v0.5.0 // indirect
-	golang.org/x/exp v0.0.0-20230113213754-f9f960f08ad4 // indirect
+	golang.org/x/exp v0.0.0-20230127193734-31bee513bff7 // indirect
 	golang.org/x/net v0.5.0 // indirect
 	golang.org/x/oauth2 v0.4.0 // indirect
 	golang.org/x/sys v0.4.0 // indirect
