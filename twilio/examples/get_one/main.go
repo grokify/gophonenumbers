@@ -25,8 +25,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	loaded, err := config.LoadDotEnvSkipEmptyInfo(
-		os.Getenv("ENV_PATH"), "./.env", opts.EnvFile)
+	loaded, err := config.LoadDotEnv(
+		[]string{os.Getenv("ENV_PATH"), "./.env", opts.EnvFile}, -1)
 	if err != nil {
 		log.Fatal(err)
 	}

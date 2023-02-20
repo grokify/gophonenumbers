@@ -160,7 +160,7 @@ func NewMultiResultsFiles(dir string, rxPattern string) (MultiResults, error) {
 		}
 		fileModTime := fi.ModTime()
 		for key, ni := range mResults.Responses {
-			if timeutil.TimeIsZeroAny(ni.APIResponseInfo.Time) {
+			if timeutil.NewTimeMore(ni.APIResponseInfo.Time, 0).IsZeroAny() {
 				ni.APIResponseInfo.Time = fileModTime
 				mResults.Responses[key] = ni
 			}

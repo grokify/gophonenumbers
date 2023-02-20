@@ -155,7 +155,7 @@ func ReadFilesMultiResults(dir string, rxPattern string) (MultiResults, error) {
 		}
 		fileModTime := fi.ModTime()
 		for key, ni := range mResults.Responses {
-			if timeutil.TimeIsZeroAny(ni.Time) {
+			if timeutil.NewTimeMore(ni.Time, 0).IsZeroAny() {
 				ni.Time = fileModTime
 				mResults.Responses[key] = ni
 			}
