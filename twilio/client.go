@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/grokify/goauth"
+	"github.com/grokify/goauth/authutil"
 	"github.com/grokify/mogo/net/http/httputilmore"
 )
 
@@ -27,7 +27,7 @@ type Client struct {
 }
 
 func NewClient(accountSid, authToken string) (*Client, error) {
-	httpClient, err := goauth.NewClientBasicAuth(
+	httpClient, err := authutil.NewClientBasicAuth(
 		accountSid, authToken, false)
 	if err != nil {
 		return nil, err
