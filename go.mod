@@ -3,9 +3,9 @@ module github.com/grokify/gophonenumbers
 go 1.18
 
 require (
-	github.com/grokify/goauth v0.18.0
-	github.com/grokify/gocharts/v2 v2.9.0
-	github.com/grokify/mogo v0.49.1
+	github.com/grokify/goauth v0.19.0
+	github.com/grokify/gocharts/v2 v2.9.1
+	github.com/grokify/mogo v0.50.0
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.1.7
@@ -27,7 +27,7 @@ require (
 	github.com/kylelemons/go-gypsy v1.0.0 // indirect
 	github.com/lib/pq v1.10.9 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.18 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
@@ -44,11 +44,11 @@ require (
 	github.com/xuri/nfp v0.0.0-20230503010013-3f38cdbb0b83 // indirect
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	golang.org/x/crypto v0.9.0 // indirect
-	golang.org/x/exp v0.0.0-20230510235704-dd950f8aeaea // indirect
+	golang.org/x/exp v0.0.0-20230522175609-2e198f4a06a1 // indirect
 	golang.org/x/net v0.10.0 // indirect
 	golang.org/x/oauth2 v0.8.0 // indirect
-	golang.org/x/sys v0.8.0 // indirect
-	golang.org/x/text v0.9.0 // indirect
+	golang.org/x/sys v0.9.0 // indirect
+	golang.org/x/text v0.10.0 // indirect
 	gonum.org/v1/gonum v0.13.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect
