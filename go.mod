@@ -3,8 +3,8 @@ module github.com/grokify/gophonenumbers
 go 1.18
 
 require (
-	github.com/grokify/goauth v0.20.1
-	github.com/grokify/gocharts/v2 v2.11.2
+	github.com/grokify/goauth v0.20.2
+	github.com/grokify/gocharts/v2 v2.12.0
 	github.com/grokify/mogo v0.55.0
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/kellydunn/golang-geo v0.7.0
