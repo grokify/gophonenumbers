@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/grokify/goauth v0.20.1
 	github.com/grokify/gocharts/v2 v2.11.2
-	github.com/grokify/mogo v0.54.1
+	github.com/grokify/mogo v0.55.0
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.1.8
@@ -48,8 +48,8 @@ require (
 	golang.org/x/exp v0.0.0-20230817173708-d852ddb80c63 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/oauth2 v0.11.0 // indirect
-	golang.org/x/sys v0.11.0 // indirect
-	golang.org/x/text v0.12.0 // indirect
+	golang.org/x/sys v0.12.0 // indirect
+	golang.org/x/text v0.13.0 // indirect
 	gonum.org/v1/gonum v0.14.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
