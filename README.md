@@ -73,7 +73,7 @@ func main() {
 }
 ```
 
- [build-status-svg]: https://github.com/grokify/gophonenumbers/workflows/go%20build/badge.svg
+ [build-status-svg]: https://github.com/grokify/gophonenumbers/workflows/test/badge.svg
  [build-status-url]: https://github.com/grokify/gophonenumbers/actions
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/gophonenumbers
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/gophonenumbers
