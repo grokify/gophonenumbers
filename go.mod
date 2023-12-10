@@ -5,7 +5,7 @@ go 1.21
 // toolchain go1.21.1
 
 require (
-	github.com/grokify/goauth v0.20.4
+	github.com/grokify/goauth v0.20.5
 	github.com/grokify/gocharts/v2 v2.15.2
 	github.com/grokify/mogo v0.61.0
 	github.com/jessevdk/go-flags v1.5.0
@@ -17,8 +17,9 @@ require (
 require (
 	github.com/caarlos0/env/v6 v6.10.1 // indirect
 	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
-	github.com/golang-jwt/jwt/v5 v5.0.0 // indirect
+	github.com/golang-jwt/jwt/v5 v5.1.0 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
+	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/grokify/base36 v1.0.5 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
@@ -46,7 +47,7 @@ require (
 	golang.org/x/crypto v0.15.0 // indirect
 	golang.org/x/exp v0.0.0-20231110203233-9a3e6036ecaa // indirect
 	golang.org/x/net v0.18.0 // indirect
-	golang.org/x/oauth2 v0.13.0 // indirect
+	golang.org/x/oauth2 v0.14.0 // indirect
 	golang.org/x/sys v0.14.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	gonum.org/v1/gonum v0.14.0 // indirect
