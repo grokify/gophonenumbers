@@ -10,7 +10,7 @@ require (
 	github.com/grokify/mogo v0.62.2
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/kellydunn/golang-geo v0.7.0
-	github.com/nyaruka/phonenumbers v1.2.2
+	github.com/nyaruka/phonenumbers v1.2.3
 	github.com/rs/zerolog v1.31.0
 )
 
@@ -35,7 +35,6 @@ require (
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.3 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
-	github.com/stretchr/testify v1.8.1 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/quicktemplate v1.7.0 // indirect
 	github.com/xuri/efp v0.0.0-20231025114914-d1ff6096ae53 // indirect
