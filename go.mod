@@ -6,8 +6,8 @@ go 1.21
 
 require (
 	github.com/grokify/goauth v0.20.11
-	github.com/grokify/gocharts/v2 v2.18.0
-	github.com/grokify/mogo v0.63.0
+	github.com/grokify/gocharts/v2 v2.18.1
+	github.com/grokify/mogo v0.63.1
 	github.com/jessevdk/go-flags v1.5.0
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.3.1
