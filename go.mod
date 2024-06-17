@@ -8,7 +8,7 @@ require (
 	github.com/grokify/goauth v0.21.2
 	github.com/grokify/gocharts/v2 v2.19.1
 	github.com/grokify/mogo v0.64.2
-	github.com/jessevdk/go-flags v1.5.0
+	github.com/jessevdk/go-flags v1.6.1
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.3.6
 	github.com/rs/zerolog v1.33.0
@@ -46,7 +46,7 @@ require (
 	golang.org/x/image v0.16.0 // indirect
 	golang.org/x/net v0.25.0 // indirect
 	golang.org/x/oauth2 v0.20.0 // indirect
-	golang.org/x/sys v0.20.0 // indirect
+	golang.org/x/sys v0.21.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
 	gonum.org/v1/gonum v0.15.0 // indirect
 	google.golang.org/protobuf v1.34.1 // indirect
