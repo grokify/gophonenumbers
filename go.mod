@@ -6,8 +6,8 @@ toolchain go1.23.0
 
 require (
 	github.com/grokify/goauth v0.22.1
-	github.com/grokify/gocharts/v2 v2.20.2
-	github.com/grokify/mogo v0.64.12
+	github.com/grokify/gocharts/v2 v2.20.3
+	github.com/grokify/mogo v0.65.0
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.4.0
@@ -40,7 +40,7 @@ require (
 	github.com/xuri/nfp v0.0.0-20240318013403-ab9948c2c4a7 // indirect
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	golang.org/x/crypto v0.28.0 // indirect
-	golang.org/x/exp v0.0.0-20241004190924-225e2abe05e6 // indirect
+	golang.org/x/exp v0.0.0-20241009180824-f66d83c29e7c // indirect
 	golang.org/x/image v0.21.0 // indirect
 	golang.org/x/net v0.30.0 // indirect
 	golang.org/x/oauth2 v0.23.0 // indirect
