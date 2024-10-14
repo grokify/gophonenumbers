@@ -7,7 +7,7 @@ toolchain go1.23.0
 require (
 	github.com/grokify/goauth v0.22.1
 	github.com/grokify/gocharts/v2 v2.20.2
-	github.com/grokify/mogo v0.64.12
+	github.com/grokify/mogo v0.65.0
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.4.0
