@@ -73,7 +73,7 @@ func (set *NumberSet) HistogramCarrierName() map[string]int {
 }
 
 func (set *NumberSet) WriteFileJSON(filename, prefix, indent string, perm fs.FileMode) error {
-	return jsonutil.WriteFile(filename, set, prefix, indent, perm)
+	return jsonutil.MarshalFile(filename, set, prefix, indent, perm)
 }
 
 type MapStringString map[string]string
