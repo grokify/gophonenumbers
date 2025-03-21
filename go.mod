@@ -8,7 +8,7 @@ require (
 	github.com/grokify/mogo v0.67.9
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/kellydunn/golang-geo v0.7.0
-	github.com/nyaruka/phonenumbers v1.5.0
+	github.com/nyaruka/phonenumbers v1.6.0
 	github.com/rs/zerolog v1.33.0
 )
 
@@ -38,12 +38,12 @@ require (
 	github.com/xuri/nfp v0.0.0-20250111060730-82a408b9aa71 // indirect
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	golang.org/x/crypto v0.33.0 // indirect
-	golang.org/x/exp v0.0.0-20250207012021-f9890c6ad9f3 // indirect
+	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
 	golang.org/x/image v0.24.0 // indirect
 	golang.org/x/net v0.34.0 // indirect
 	golang.org/x/oauth2 v0.26.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
-	golang.org/x/text v0.22.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
 	gonum.org/v1/gonum v0.15.1 // indirect
 	google.golang.org/protobuf v1.36.5 // indirect
 )
