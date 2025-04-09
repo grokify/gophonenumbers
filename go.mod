@@ -4,8 +4,8 @@ go 1.23.6
 
 require (
 	github.com/grokify/goauth v0.23.5
-	github.com/grokify/gocharts/v2 v2.22.0
-	github.com/grokify/mogo v0.67.9
+	github.com/grokify/gocharts/v2 v2.23.2
+	github.com/grokify/mogo v0.68.6
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.5.0
@@ -33,17 +33,17 @@ require (
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/quicktemplate v1.8.0 // indirect
-	github.com/xuri/efp v0.0.0-20241211021726-c4e992084aa6 // indirect
+	github.com/xuri/efp v0.0.0-20250227110027-3491fafc2b79 // indirect
 	github.com/xuri/excelize/v2 v2.9.0 // indirect
-	github.com/xuri/nfp v0.0.0-20250111060730-82a408b9aa71 // indirect
+	github.com/xuri/nfp v0.0.0-20250226145837-86d5fc24b2ba // indirect
 	github.com/ziutek/mymysql v1.5.4 // indirect
-	golang.org/x/crypto v0.33.0 // indirect
-	golang.org/x/exp v0.0.0-20250207012021-f9890c6ad9f3 // indirect
-	golang.org/x/image v0.24.0 // indirect
-	golang.org/x/net v0.34.0 // indirect
+	golang.org/x/crypto v0.37.0 // indirect
+	golang.org/x/exp v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
+	golang.org/x/image v0.26.0 // indirect
+	golang.org/x/net v0.39.0 // indirect
 	golang.org/x/oauth2 v0.26.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
-	golang.org/x/text v0.22.0 // indirect
-	gonum.org/v1/gonum v0.15.1 // indirect
-	google.golang.org/protobuf v1.36.5 // indirect
+	golang.org/x/sys v0.32.0 // indirect
+	golang.org/x/text v0.24.0 // indirect
+	gonum.org/v1/gonum v0.16.0 // indirect
+	google.golang.org/protobuf v1.36.6 // indirect
 )
