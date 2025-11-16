@@ -30,7 +30,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmtutil.PrintJSON(loaded)
+	fmtutil.MustPrintJSON(loaded)
 
 	client, err := twilio.NewClient(
 		os.Getenv(twilio.EnvTwilioAccountSid),
@@ -49,11 +49,11 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmtutil.PrintJSON(info)
+		fmtutil.MustPrintJSON(info)
 	} else {
 		mr := twilio.GetWriteValidationMulti(
 			client, phoneNumbers, []string{}, "_twilio_multi", uint(2), uint(2))
-		fmtutil.PrintJSON(mr)
+		fmtutil.MustPrintJSON(mr)
 	}
 
 	fmt.Println("DONE")
