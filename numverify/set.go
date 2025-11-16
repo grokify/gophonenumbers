@@ -174,7 +174,7 @@ func GetNumbers(nvClient Client, filebase string, byNumber *histogram.Histogram)
 
 	wantNumbers := []string{}
 	if byNumber != nil {
-		for number := range byNumber.Bins {
+		for number := range byNumber.Items {
 			wantNumbers = append(wantNumbers, number)
 		}
 	}

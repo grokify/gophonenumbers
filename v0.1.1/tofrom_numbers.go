@@ -99,8 +99,8 @@ func (tfSets *ToFromNumbersSets) Stats() (ToFromNumbersSetsStats, error) {
 		return ToFromNumbersSetsStats{}, err
 	}
 	return ToFromNumbersSetsStats{
-		ToAreaCodeCount:   uint(len(toAreaCodes.Bins)),
-		FromAreaCodeCount: uint(len(fromAreaCodes.Bins)),
+		ToAreaCodeCount:   uint(len(toAreaCodes.Items)),
+		FromAreaCodeCount: uint(len(fromAreaCodes.Items)),
 		ToNumberCount:     uint(len(tfSets.All.To.NumbersMap)),
 		FromNumberCount:   uint(len(tfSets.All.From.NumbersMap))}, nil
 }
