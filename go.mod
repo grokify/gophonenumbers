@@ -5,7 +5,7 @@ go 1.24.0
 require (
 	github.com/grokify/goauth v0.23.27
 	github.com/grokify/gocharts/v2 v2.26.5
-	github.com/grokify/mogo v0.71.10
+	github.com/grokify/mogo v0.72.0
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.6.7
@@ -44,7 +44,7 @@ require (
 	github.com/xuri/nfp v0.0.2-0.20250530014748-2ddeb826f9a9 // indirect
 	github.com/ziutek/mymysql v1.5.4 // indirect
 	golang.org/x/crypto v0.45.0 // indirect
-	golang.org/x/exp v0.0.0-20251113190631-e25ba8c21ef6 // indirect
+	golang.org/x/exp v0.0.0-20251125195548-87e1e737ad39 // indirect
 	golang.org/x/image v0.33.0 // indirect
 	golang.org/x/net v0.47.0 // indirect
 	golang.org/x/oauth2 v0.33.0 // indirect
