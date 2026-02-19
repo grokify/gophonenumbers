@@ -8,7 +8,7 @@ require (
 	github.com/grokify/mogo v0.71.10
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/kellydunn/golang-geo v0.7.0
-	github.com/nyaruka/phonenumbers v1.6.7
+	github.com/nyaruka/phonenumbers v1.6.10
 	github.com/rs/zerolog v1.34.0
 )
 
@@ -51,5 +51,5 @@ require (
 	golang.org/x/sys v0.38.0 // indirect
 	golang.org/x/text v0.31.0 // indirect
 	gonum.org/v1/gonum v0.16.0 // indirect
-	google.golang.org/protobuf v1.36.10 // indirect
+	google.golang.org/protobuf v1.36.11 // indirect
 )
