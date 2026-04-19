@@ -1,0 +1,311 @@
+{
+  "irVersion": "1.0",
+  "project": "gophonenumbers",
+  "repository": "https://github.com/grokify/gophonenumbers",
+  "versioning": "semver",
+  "commitConvention": "conventional",
+  "maintainers": ["grokify"],
+  "releases": [
+    {
+      "version": "v0.6.2",
+      "date": "2026-04-19",
+      "highlights": [
+        { "description": "Embedded CSV data for US area code geolocation - no external file dependencies" }
+      ],
+      "added": [
+        { "description": "`AreaCodeGeoCSV()` function returning embedded CSV data", "commit": "241f479" },
+        { "description": "`ReadCSVBytes()` method for reading area code data from byte slices", "commit": "241f479" },
+        { "description": "Unit tests for embedded data functionality", "commit": "241f479" }
+      ],
+      "changed": [
+        { "description": "`ReadData()` now uses embedded CSV instead of filesystem paths", "commit": "241f479" }
+      ],
+      "removed": [
+        { "description": "`A2gCsvFullPath()` and `A2gCsvRelPath` that relied on GOPATH", "commit": "241f479" }
+      ],
+      "fixed": [
+        { "description": "CI failures caused by CSV file not found at GOPATH-relative path", "commit": "241f479" },
+        { "description": "G115 lint warnings for safe integer conversions", "commit": "029a7f9" }
+      ]
+    },
+    {
+      "version": "v0.6.1",
+      "date": "2026-04-19",
+      "fixed": [
+        { "description": "G115 lint warnings for integer conversions in components.go", "commit": "7aea535" },
+        { "description": "G115 lint warnings for integer conversions in fictitiousgenerator.go", "commit": "7aea535" },
+        { "description": "G115 lint warnings for integer conversions in numverify/set.go and twilio/set.go", "commit": "7aea535" }
+      ]
+    },
+    {
+      "version": "v0.6.0",
+      "date": "2026-04-19",
+      "infrastructure": [
+        { "description": "Update to shared CI/CD workflows", "commit": "b519e68" },
+        { "description": "Update copyright year in LICENSE", "commit": "daee48b" }
+      ],
+      "dependencies": [
+        { "description": "Update `github.com/grokify/goauth` to v0.23.29", "commit": "2e9bfe8" },
+        { "description": "Update Go modules", "commit": "1a5dd07" }
+      ],
+      "documentation": [
+        { "description": "Update README shields", "commit": "fc6f8e8" }
+      ]
+    },
+    {
+      "version": "v0.5.1",
+      "date": "2025-11-16",
+      "fixed": [
+        { "description": "Various golangci-lint issues", "commit": "84a2e92" }
+      ],
+      "infrastructure": [
+        { "description": "Update golangci-lint configuration", "commit": "3fc5969" }
+      ],
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "65ac1f2" },
+        { "description": "Bump golangci/golangci-lint-action from 6 to 8", "commit": "2406228" }
+      ]
+    },
+    {
+      "version": "v0.5.0",
+      "date": "2025-02-10",
+      "highlights": [
+        { "description": "New phone number formatting types for E.164, national, and international formats" }
+      ],
+      "added": [
+        { "description": "`Formats{}` struct for phone number format representations", "commit": "69ec759" },
+        { "description": "`FormatsParse()` function to parse E.164 string into all formats", "commit": "69ec759" },
+        { "description": "`FormatsFromPhoneNumber()` function to get formats from phonenumbers.PhoneNumber", "commit": "69ec759" }
+      ],
+      "infrastructure": [
+        { "description": "Update copyright years in LICENSE", "commit": "58f2697" }
+      ],
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "066be83" },
+        { "description": "Bump `github.com/nyaruka/phonenumbers` to v1.4.4", "commit": "9a57dbc" }
+      ]
+    },
+    {
+      "version": "v0.4.10",
+      "date": "2024-09-02",
+      "infrastructure": [
+        { "description": "Update Go test versions in CI", "commit": "3c91343" }
+      ],
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "aba4278" },
+        { "description": "Bump `github.com/grokify/mogo` to v0.64.9", "commit": "5bccddf" }
+      ]
+    },
+    {
+      "version": "v0.4.9",
+      "date": "2024-08-18",
+      "dependencies": [
+        { "description": "Update Go modules" }
+      ]
+    },
+    {
+      "version": "v0.4.8",
+      "date": "2024-04-30",
+      "dependencies": [
+        { "description": "Update Go modules" }
+      ]
+    },
+    {
+      "version": "v0.4.7",
+      "date": "2024-03-23",
+      "dependencies": [
+        { "description": "Update Go modules" }
+      ]
+    },
+    {
+      "version": "v0.4.6",
+      "date": "2023-11-03",
+      "dependencies": [
+        { "description": "Update Go modules" }
+      ]
+    },
+    {
+      "version": "v0.4.5",
+      "date": "2023-09-04",
+      "infrastructure": [
+        { "description": "Add Go 1.21.x to CI test matrix", "commit": "3e4d118" },
+        { "description": "Enable golangci-lint with 3m timeout", "commit": "3d75e38" },
+        { "description": "Update actions/checkout to v4.0.0", "commit": "c63be96" }
+      ],
+      "dependencies": [
+        { "description": "Update `github.com/grokify/goauth` to v0.20.2", "commit": "ca5325c" },
+        { "description": "Update `github.com/grokify/mogo` to v0.55.0", "commit": "97dc8cf" }
+      ]
+    },
+    {
+      "version": "v0.4.4",
+      "date": "2023-04-12",
+      "dependencies": [
+        { "description": "Update Go modules" }
+      ]
+    },
+    {
+      "version": "v0.4.3",
+      "date": "2023-02-20",
+      "dependencies": [
+        { "description": "Update Go modules" }
+      ]
+    },
+    {
+      "version": "v0.4.2",
+      "date": "2023-01-14",
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "46e21f4" },
+        { "description": "Update actions/checkout to v3.3.0", "commit": "e77e0b5" }
+      ]
+    },
+    {
+      "version": "v0.4.1",
+      "date": "2022-12-28",
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "e845862" },
+        { "description": "Update actions/checkout to v3.2.0", "commit": "9e11d66" }
+      ]
+    },
+    {
+      "version": "v0.4.0",
+      "date": "2022-12-05",
+      "fixed": [
+        { "description": "Remove deprecated `io/ioutil` usage", "commit": "450fd0f" }
+      ],
+      "infrastructure": [
+        { "description": "Update actions/checkout to v3.1.0", "commit": "34423e7" }
+      ],
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "960e3f1" },
+        { "description": "Update `github.com/grokify/goauth` to v0.16.2", "commit": "29c03cb" },
+        { "description": "Update `github.com/grokify/gocharts/v2` to v2.8.1", "commit": "71dfd25" }
+      ]
+    },
+    {
+      "version": "v0.3.2",
+      "date": "2022-08-22",
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "a777ace" },
+        { "description": "Update `github.com/nyaruka/phonenumbers` to v1.1.0", "commit": "209a84e" },
+        { "description": "Update `github.com/grokify/gocharts/v2` to v2.7.4", "commit": "ddc5edf" }
+      ]
+    },
+    {
+      "version": "v0.3.1",
+      "date": "2022-04-16",
+      "added": [
+        { "description": "Example `areacode_distance` command", "commit": "46c4d72" }
+      ],
+      "changed": [
+        { "description": "Move folders from `apps` to `cmd`", "commit": "69b5e13" }
+      ],
+      "infrastructure": [
+        { "description": "Add Go v1.18 to CI test matrix", "commit": "9bdeaa9" },
+        { "description": "Initialize Dependabot configuration", "commit": "2354047" },
+        { "description": "Initialize golangci-lint configuration", "commit": "d00b1e6" },
+        { "description": "Update actions/setup-go to v3", "commit": "e71128d" },
+        { "description": "Update golangci/golangci-lint-action to v3", "commit": "79c39bc" }
+      ],
+      "fixed": [
+        { "description": "Various golangci-lint issues", "commit": "ddb5e19" },
+        { "description": "Use crypto/rand instead of math/rand", "commit": "4431341" }
+      ],
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "392b523" },
+        { "description": "Update `github.com/grokify/gocharts` to v1.6.0", "commit": "81ff0df" }
+      ]
+    },
+    {
+      "version": "v0.3.0",
+      "date": "2022-02-10",
+      "highlights": [
+        { "description": "Migrated common phone number code from mogo library" }
+      ],
+      "added": [
+        { "description": "`NumberSet.HistogramCarrierName()` for carrier name histograms", "commit": "ef4409b" },
+        { "description": "`NumberSet.Validate()` for batch validation", "commit": "e8a0ff5" },
+        { "description": "`Number.RemoveLookups()` and `NumberSet.RemoveLookups()` methods", "commit": "6bac711" }
+      ],
+      "changed": [
+        { "description": "Migrate phone number code from `mogo` library", "commit": "f34ec11" }
+      ],
+      "infrastructure": [
+        { "description": "Update Go versions in CI", "commit": "5b2e422" },
+        { "description": "Update copyright years in LICENSE", "commit": "02986a7" }
+      ],
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "66ea50a" },
+        { "description": "Remove direct dependency on `github.com/pkg/errors`", "commit": "97a7d00" }
+      ]
+    },
+    {
+      "version": "v0.2.0",
+      "date": "2021-07-18",
+      "highlights": [
+        { "description": "New version structure with v0.1.1 compatibility folder" }
+      ],
+      "added": [
+        { "description": "Twilio conversion to canonical structs", "commit": "18e958d" },
+        { "description": "New version for common code", "commit": "e264e9a" }
+      ],
+      "changed": [
+        { "description": "Move old code to `v0.1.1` folder for compatibility", "commit": "62be2c1" }
+      ],
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "317e6e7" }
+      ]
+    },
+    {
+      "version": "v0.1.0",
+      "date": "2021-06-04",
+      "fixed": [
+        { "description": "Apply gofmt simplification", "commit": "bb12503" }
+      ],
+      "dependencies": [
+        { "description": "Update Go modules", "commit": "76e6e18" }
+      ]
+    },
+    {
+      "version": "v0.0.4",
+      "date": "2021-04-26",
+      "dependencies": [
+        { "description": "Update Go modules" }
+      ]
+    },
+    {
+      "version": "v0.0.3",
+      "date": "2021-04-23",
+      "dependencies": [
+        { "description": "Update Go modules" }
+      ]
+    },
+    {
+      "version": "v0.0.2",
+      "date": "2021-03-05",
+      "dependencies": [
+        { "description": "Update Go modules" }
+      ]
+    },
+    {
+      "version": "v0.0.1",
+      "date": "2020-12-31",
+      "highlights": [
+        { "description": "Initial release with phone number lookup API clients" }
+      ],
+      "added": [
+        { "description": "Numverify API client for phone number validation", "commit": "5c246c9" },
+        { "description": "Twilio Lookup API client", "commit": "5c246c9" },
+        { "description": "CLI app for Numverify API", "commit": "5c246c9" },
+        { "description": "NANP (North American Numbering Plan) component parsing", "commit": "5c246c9" },
+        { "description": "E.164 phone number formatting utilities", "commit": "5c246c9" },
+        { "description": "Fictitious phone number generator for testing", "commit": "5c246c9" },
+        { "description": "US area code geolocation data", "commit": "5c246c9" }
+      ],
+      "infrastructure": [
+        { "description": "GitHub Actions CI workflow", "commit": "5c246c9" },
+        { "description": "Go modules initialization", "commit": "5c246c9" }
+      ]
+    }
+  ]
+}
