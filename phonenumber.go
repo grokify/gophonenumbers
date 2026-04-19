@@ -1,20 +1,25 @@
 package gophonenumbers
 
 import (
+	"bytes"
+	_ "embed"
+	"encoding/csv"
 	"fmt"
 	"io"
-	"os"
-	"path"
 	"strconv"
 
-	"github.com/grokify/mogo/encoding/csvutil"
 	"github.com/grokify/mogo/sort/sortutil"
 	geo "github.com/kellydunn/golang-geo"
 )
 
-const (
-	A2gCsvRelPath = "github.com/grokify/mogo/strconv/phonenumber/us-area-code-geo.csv"
-)
+//go:embed us-area-code-geo.csv
+var areaCodeGeoCSV []byte
+
+// AreaCodeGeoCSV returns the embedded US area code geolocation CSV data.
+// This data is from https://github.com/ravisorg/Area-Code-Geolocation-Database
+func AreaCodeGeoCSV() []byte {
+	return areaCodeGeoCSV
+}
 
 type AreaCodeInfo struct {
 	AreaCode uint16
@@ -63,37 +68,29 @@ func NewAreaCodeToGeo() AreaCodeToGeo {
 	return AreaCodeToGeo{AreaCodeInfos: map[uint16]AreaCodeInfo{}}
 }
 
+// ReadData loads the embedded US area code geolocation data.
 func (a2g *AreaCodeToGeo) ReadData() error {
-	return a2g.ReadCsvPath(A2gCsvFullPath())
+	return a2g.ReadCSVBytes(areaCodeGeoCSV)
 }
 
-func (a2g *AreaCodeToGeo) ReadCsvPath(csvpath string) error {
-	csv, file, err := csvutil.NewReaderFile(A2gCsvFullPath(), ',')
-	if err != nil {
-		return err
-	}
+// ReadCSVBytes reads area code data from a CSV byte slice.
+func (a2g *AreaCodeToGeo) ReadCSVBytes(data []byte) error {
+	r := csv.NewReader(bytes.NewReader(data))
 
 	for {
-		rec, errx := csv.Read()
-		if errx == io.EOF {
+		rec, err := r.Read()
+		if err == io.EOF {
 			break
-		} else if errx != nil {
-			err = errx
-			break
+		} else if err != nil {
+			return err
 		} else if len(rec) != 3 {
-			err = fmt.Errorf("bad LatLon Data [%v]", rec)
-			break
+			return fmt.Errorf("bad LatLon Data [%v]", rec)
 		}
-		aci, errx := NewAreaCodeInfoStrings(rec[0], rec[1], rec[2])
-		if errx != nil {
-			err = errx
-			break
+		aci, err := NewAreaCodeInfoStrings(rec[0], rec[1], rec[2])
+		if err != nil {
+			return err
 		}
 		a2g.AreaCodeInfos[aci.AreaCode] = aci
-	}
-	file.Close()
-	if err != nil {
-		return err
 	}
 	a2g.Inflate()
 	return nil
@@ -160,10 +157,4 @@ func (a2g *AreaCodeToGeo) GcdAreaCodes(ac1Int uint16, ac2Int uint16) (float64, e
 
 	dist2 := ac1.Point.GreatCircleDistance(ac2.Point)
 	return dist2, nil
-}
-
-// A2gCsvFullPath reads data from:
-// https://github.com/ravisorg/Area-Code-Geolocation-Database
-func A2gCsvFullPath() string {
-	return path.Join(os.Getenv("GOPATH"), "src", A2gCsvRelPath)
 }
