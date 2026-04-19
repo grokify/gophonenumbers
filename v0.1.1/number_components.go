@@ -29,17 +29,17 @@ func ParseE164(e164 string) Components {
 		if err != nil {
 			panic(fmt.Sprintf("ParseE164 [%v]", err.Error()))
 		}
-		comp.E164Uint = uint(e164int)
+		comp.E164Uint = uint(e164int) //nolint:gosec // G115: E.164 number validated by regex, always positive
 		areaCode, err := strconv.Atoi(m[0][2])
 		if err != nil {
 			panic(fmt.Sprintf("ParseE164 [%v]", err.Error()))
 		}
-		comp.NANPAreaCode = uint(areaCode)
+		comp.NANPAreaCode = uint(areaCode) //nolint:gosec // G115: 3-digit area code validated by regex
 		exchangeCode, err := strconv.Atoi(m[0][3])
 		if err != nil {
 			panic(fmt.Sprintf("ParseE164 [%v]", err.Error()))
 		}
-		comp.NANPExchangeCode = uint(exchangeCode)
+		comp.NANPExchangeCode = uint(exchangeCode) //nolint:gosec // G115: 3-digit exchange code validated by regex
 		lineNumber, err := strconv.Atoi(m[0][4])
 		if err != nil {
 			panic(fmt.Sprintf("ParseE164 [%v]", err.Error()))

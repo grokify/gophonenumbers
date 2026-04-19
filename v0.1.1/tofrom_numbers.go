@@ -56,7 +56,7 @@ func (tfSets *ToFromNumbersSets) AddNumber(num NumberInfo, direction Direction, 
 		}
 		if addAreaCode {
 			num.InflateComponents()
-			areaCode := strconv.Itoa(int(num.Components.NANPAreaCode))
+			areaCode := strconv.Itoa(int(num.Components.NANPAreaCode)) //nolint:gosec // G115: area code is 3 digits (100-999)
 			tfSetAC, ok := tfSets.AreaCodesMap[areaCode]
 			if !ok {
 				tfSetAC = NewToFromNumbersSet()

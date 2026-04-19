@@ -113,7 +113,7 @@ func GetWriteValidationMulti(client *Client, requestNumbers, skipNumbers []strin
 				Int("httpStatus", validate.APIResponseInfo.StatusCode).
 				Msg("logAt")
 		}
-		if fileAt > 0 && i%int(fileAt) == 0 && len(resps.Responses) > 0 {
+		if fileAt > 0 && i%int(fileAt) == 0 && len(resps.Responses) > 0 { //nolint:gosec // G115: fileAt is small file interval
 			err := resps.Write(common.BuildFilename(filenameBase, i, count))
 			if err != nil {
 				log.Error().Err(err)

@@ -84,7 +84,7 @@ func NumbersSetAreaCodesNANP(numSet *NumbersSet) (*histogram.Histogram, error) {
 			}
 		}
 		if num.Components.NANPAreaCode > 0 {
-			fs.Add(strconv.Itoa(int(num.Components.NANPAreaCode)), 1)
+			fs.Add(strconv.Itoa(int(num.Components.NANPAreaCode)), 1) //nolint:gosec // G115: area code is 3 digits (100-999)
 		}
 	}
 	fs.Inflate()
