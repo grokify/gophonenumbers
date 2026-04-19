@@ -61,7 +61,7 @@ func (num *PhoneNumber) Meta() Components {
 		E164:         num.GetNumberE164(),
 		E164Uint:     num.GetNumberE164Uint(),
 		RegionCode:   num.GetRegionCode(),
-		CountryCode:  uint(num.GetCountryCode()),
+		CountryCode:  uint(num.GetCountryCode()), //nolint:gosec // G115: country codes are always positive
 		NANPAreaCode: uint(num.GetAreaCode())}
 	return comp
 }

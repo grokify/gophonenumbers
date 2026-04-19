@@ -34,7 +34,7 @@ func (fng *FakeNumberGenerator) RandomLineNumber() uint16 {
 // RandomLineNumber generates a random line number
 func (fng *FakeNumberGenerator) RandomLineNumberMinMax(min, max uint16) uint16 {
 	num := randutil.Intn(int(max) - int(min))
-	return uint16(num) + min
+	return uint16(num) + min //nolint:gosec // G115: num bounded by max-min (99 max)
 }
 
 // RandomLocalNumberUS returns a US E.164 number

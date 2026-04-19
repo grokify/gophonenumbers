@@ -101,7 +101,7 @@ func GetWriteValidationMulti(client *Client, requestNumbers, skipNumbers []strin
 		validate, _ := client.Validate(
 			e164Number, &Params{Type: "carrier"})
 		resps.Responses[e164Number] = &validate
-		if logAt > 0 && i%int(logAt) == 0 {
+		if logAt > 0 && i%int(logAt) == 0 { //nolint:gosec // G115: logAt is small logging interval
 			/*apiStatus := "S"
 			if validate.ApiResponseInfo.StatusCode >= 300 {
 				apiStatus = "F"
