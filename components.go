@@ -46,6 +46,6 @@ func (num *Number) NANPComponents() (Components, error) {
 	if err != nil {
 		panic(fmt.Sprintf("ParseE164 [%v]", err.Error()))
 	}
-	comp.NANPLineNumber = uint(lineNumber)
+	comp.NANPLineNumber = uint(lineNumber) //nolint:gosec // G115: 4-digit line number validated by regex
 	return comp, nil
 }

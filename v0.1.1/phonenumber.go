@@ -33,7 +33,7 @@ func (num *PhoneNumber) GetNumberE164Uint() uint {
 	if err != nil {
 		panic(err)
 	}
-	return uint(e164int)
+	return uint(e164int) //nolint:gosec // G115: E.164 number always positive
 }
 
 func (num *PhoneNumber) GetAreaCode() int {
@@ -62,6 +62,6 @@ func (num *PhoneNumber) Meta() Components {
 		E164Uint:     num.GetNumberE164Uint(),
 		RegionCode:   num.GetRegionCode(),
 		CountryCode:  uint(num.GetCountryCode()), //nolint:gosec // G115: country codes are always positive
-		NANPAreaCode: uint(num.GetAreaCode())}
+		NANPAreaCode: uint(num.GetAreaCode())}    //nolint:gosec // G115: area code is 3 digits (100-999)
 	return comp
 }
