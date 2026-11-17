@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/grokify/goauth v0.23.30
 	github.com/grokify/gocharts/v2 v2.27.0
-	github.com/grokify/mogo v0.74.5
+	github.com/grokify/mogo v0.74.6
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/kellydunn/golang-geo v0.7.0
 	github.com/nyaruka/phonenumbers v1.7.5
